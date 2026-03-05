@@ -9,35 +9,22 @@
 
 const COMMANDS = {
 
-  whoami: () => {
-    const card = document.createElement('div');
-    card.className = 'whoami-card';
-
-    const photo = document.createElement('div');
-    photo.className = 'term-photo';
-    photo.onclick = openLightbox;
-    photo.innerHTML = '<img src="/img/portrait.png" alt="Andrew Korolev"><span class="term-photo-label">[ click to enlarge ]</span>';
-
-    const info = document.createElement('div');
-    info.className = 'whoami-info';
-    info.innerHTML =
-      '<span class="output-bold">Andrew Korolev</span><br>' +
-      '<span class="output-cyan">Principal Engineer / System Architect</span><br>' +
-      '<br>' +
-      '🏠  Location:   Russia<br>' +
-      '💼  Focus:      Distributed Systems, DevOps, Product Engineering<br>' +
-      '🧠  Philosophy: "Build systems that outlive the team that built them."';
-
-    card.appendChild(photo);
-    card.appendChild(info);
-
-    return { element: card, after: [
-      '',
-      '  15+ years of building, scaling, and unfucking production systems.',
-      '  From bare-metal to Kubernetes, from monoliths to microservices.',
-      '',
-    ]};
-  },
+  whoami: () => [
+    '',
+    '<span class="output-bold">  Andrew Korolev</span>',
+    '<span class="output-cyan">  Staff Engineer / Principal Architect</span>',
+    '',
+    '  🏠  Location:    Russia',
+    '  💼  Focus:       Distributed Systems, DevOps, Product Engineering',
+    '  🧠  Philosophy:  "Build systems that outlive the team that built them."',
+    '',
+    '  18+ years of building, scaling, and unfucking production systems.',
+    '  From bare-metal to Kubernetes, from monoliths to microservices.',
+    '  FinTech · E-commerce · AI/LLM · Web3',
+    '',
+    '  <span class="output-info">Type <span class="output-cyan">resume</span> to see full CV or <span class="output-cyan">contact</span> to get in touch.</span>',
+    '',
+  ],
 
   skills: () => {
     const skills = [
@@ -68,54 +55,25 @@ const COMMANDS = {
     return lines;
   },
 
-  projects: () => [
-    '',
-    '<span class="output-bold">  📂 Notable Projects</span>',
-    '',
-    '  <span class="output-cyan">ros-matras.ru</span>        E-commerce platform (mattresses & furniture)',
-    '                        Yii2 + PostgreSQL + AI enrichment pipeline',
-    '',
-    '  <span class="output-cyan">MDM Aggregator</span>       Master Data Management for product catalog',
-    '                        Go microservices + DeepSeek AI + Docker',
-    '',
-    '  <span class="output-cyan">Price Engine</span>         Real-time pricing with 800K+ SKU variants',
-    '                        High-perf ETL, staging → normalization → sync',
-    '',
-    '  <span class="output-cyan">Infrastructure</span>       Full DevOps: Docker Compose, NPM, Let\'s Encrypt,',
-    '                        CI/CD pipelines, monitoring, log aggregation',
-    '',
-    '  <span class="output-info">  Type "contact" to discuss collaboration.</span>',
-    '',
-  ],
-
   contact: () => [
     '',
     '<span class="output-bold">  📬 Get in Touch</span>',
     '',
-    '  ✉️   Email:     <a class="output-link" href="mailto:andrey@korolev.tech">andrey@korolev.tech</a>',
+    '  ✉️   Email:     <a class="output-link" href="mailto:andrew@korolev.tech">andrew@korolev.tech</a>',
     '  🔗  GitHub:    <a class="output-link" href="https://github.com/akorolev" target="_blank">github.com/akorolev</a>',
-    '  💬  Telegram:  <a class="output-link" href="https://t.me/akorolev" target="_blank">@akorolev</a>',
+    '  💬  Telegram:  <a class="output-link" href="https://t.me/gimguo" target="_blank">@gimguo</a>',
+    '  📄  Resume:    <a class="output-link" href="/resume.html" target="_blank">korolev.tech/resume</a>',
     '',
     '  <span class="output-info">Open to interesting challenges and collaborations.</span>',
     '',
   ],
 
   resume: () => {
-    window.open('/resume.pdf', '_blank');
+    window.open('/resume.html', '_blank');
     return [
       '',
       '  <span class="output-info">📄 Opening resume in a new tab...</span>',
-      '  <span class="output-info">   (If nothing happened, check your popup blocker)</span>',
-      '',
-    ];
-  },
-
-  photo: () => {
-    openLightbox();
-    return [
-      '',
-      '  <span class="output-info">📷 Opening portrait in fullscreen...</span>',
-      '  <span class="output-info">   Click anywhere or press ESC to close.</span>',
+      '  <span class="output-info">   Use "Save as PDF" button or Ctrl+P to export.</span>',
       '',
     ];
   },
@@ -124,12 +82,10 @@ const COMMANDS = {
     '',
     '<span class="output-bold">  Available commands:</span>',
     '',
-    '  <span class="output-cyan">whoami</span>       — About me (with photo)',
+    '  <span class="output-cyan">whoami</span>       — About me',
     '  <span class="output-cyan">skills</span>       — Technical skills',
-    '  <span class="output-cyan">projects</span>     — Notable projects',
     '  <span class="output-cyan">contact</span>      — Contact information',
-    '  <span class="output-cyan">photo</span>        — View portrait fullscreen',
-    '  <span class="output-cyan">resume</span>       — Open PDF resume',
+    '  <span class="output-cyan">resume</span>       — Open CV in new tab',
     '  <span class="output-cyan">clear</span>        — Clear terminal',
     '  <span class="output-cyan">help</span>         — Show this message',
     '',
@@ -200,23 +156,18 @@ const FILESYSTEM = {
 // ── ASCII-баннер ───────────────────────────────────────────
 
 const BANNER = `<span class="ascii-art">
-    ╔═══════════════════════════════════════════════════════════════╗
-    ║                                                               ║
-    ║     █████╗ ██╗  ██╗ ██████╗ ██████╗  ██████╗ ██╗     ███████╗║
-    ║    ██╔══██╗██║ ██╔╝██╔═══██╗██╔══██╗██╔═══██╗██║     ██╔════╝║
-    ║    ███████║█████╔╝ ██║   ██║██████╔╝██║   ██║██║     █████╗  ║
-    ║    ██╔══██║██╔═██╗ ██║   ██║██╔══██╗██║   ██║██║     ██╔══╝  ║
-    ║    ██║  ██║██║  ██╗╚██████╔╝██║  ██║╚██████╔╝███████╗███████╗║
-    ║    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝║
-    ║                                                               ║
-    ╚═══════════════════════════════════════════════════════════════╝
+  <span class="output-highlight">🔑</span>
+  ██╗  ██╗ ██████╗ ██████╗  ██████╗ ██╗     ███████╗██╗   ██╗
+  ██║ ██╔╝██╔═══██╗██╔══██╗██╔═══██╗██║     ██╔════╝██║   ██║
+  █████╔╝ ██║   ██║██████╔╝██║   ██║██║     █████╗  ██║   ██║
+  ██╔═██╗ ██║   ██║██╔══██╗██║   ██║██║     ██╔══╝  ╚██╗ ██╔╝
+  ██║  ██╗╚██████╔╝██║  ██║╚██████╔╝███████╗███████╗ ╚████╔╝
+  ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝  ╚═══╝
+                         <span class="output-cyan">. T E C H</span>
 </span>`;
 
 const WELCOME_LINES = [
   BANNER,
-  '',
-  '<span class="output-bold">  Welcome to korolev.tech</span>',
-  '<span class="output-cyan">  Principal Engineer — System Architect — Builder</span>',
   '',
   '  <span class="output-info">Type <span class="output-cyan">help</span> to see available commands.</span>',
   '',
@@ -233,22 +184,6 @@ const termBody = document.getElementById('terminal-body');
 let commandHistory = [];
 let historyIndex   = -1;
 let isTyping       = false;
-
-// ── Lightbox ───────────────────────────────────────────────
-
-function openLightbox() {
-  document.getElementById('lightbox').classList.add('active');
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-}
-
-document.getElementById('lightbox').addEventListener('click', closeLightbox);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-
-// ID photo click → lightbox
-document.getElementById('id-photo-wrap').addEventListener('click', openLightbox);
 
 // ── Matrix Rain Background ─────────────────────────────────
 

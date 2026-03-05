@@ -40,14 +40,24 @@ func main() {
 		})
 	})
 
-	// Статика
+	// Статика — запрет кеширования для всех файлов (обход Cloudflare CDN)
 	fs := http.FileServer(http.Dir("./static"))
-	mux.Handle("/", fs)
+	mux.Handle("/", noCache(fs))
 
 	log.Printf("🖥  korolev.tech terminal starting on :%s", port)
 	if err := http.ListenAndServe(":"+port, mux); err != nil {
 		log.Fatalf("Server failed: %v", err)
 	}
+}
+
+// noCache оборачивает файл-сервер и запрещает кеширование всей статики
+func noCache(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+		w.Header().Set("Pragma", "no-cache")
+		w.Header().Set("Expires", "0")
+		next.ServeHTTP(w, r)
+	})
 }
 
 func handleCommand(w http.ResponseWriter, r *http.Request) {

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Korolev — Resume</title>
+    <meta name="description" content="Andrew Korolev — Staff Engineer / Principal Architect. Resume.">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════
+           Andrew Korolev — Resume / CV
+           Dark terminal-style, optimized for print-to-PDF
+           ═══════════════════════════════════════════════════════ */
+
+        :root {
+            --bg:        #0a0a0a;
+            --bg-card:   #111318;
+            --bg-section:#0d0f13;
+            --green:     #00ff41;
+            --green-dim: #00cc33;
+            --green-dark:#003d10;
+            --cyan:      #00d4ff;
+            --yellow:    #ffd700;
+            --white:     #e0e0e0;
+            --gray:      #8b949e;
+            --gray-dark: #484f58;
+            --border:    #21262d;
+            --font:      'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 13px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: var(--font);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Page Container ──────────────────────────────────── */
+        .page {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 48px;
+        }
+
+        /* ── Header ──────────────────────────────────────────── */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 28px;
+        }
+
+        .header-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid var(--green-dark);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.08);
+            flex-shrink: 0;
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        .header-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--green);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .header-title {
+            font-size: 14px;
+            color: var(--cyan);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        .header-summary {
+            margin-top: 12px;
+            color: var(--gray);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .header-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 20px;
+            margin-top: 14px;
+            font-size: 12px;
+        }
+
+        .contact-item {
+            color: var(--gray);
+        }
+
+        .contact-item a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-label {
+            color: var(--gray-dark);
+        }
+
+        /* ── Format Badge ────────────────────────────────────── */
+        .format-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 3px 10px;
+            border: 1px solid var(--green-dark);
+            border-radius: 4px;
+            font-size: 10px;
+            color: var(--green-dim);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Section ─────────────────────────────────────────── */
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--green);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '>';
+            color: var(--green-dark);
+            font-weight: 400;
+        }
+
+        /* ── Experience Block ────────────────────────────────── */
+        .exp-block {
+            margin-bottom: 22px;
+            padding: 16px 18px;
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--green-dark);
+            border-radius: 4px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 6px;
+        }
+
+        .exp-company {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .exp-dates {
+            font-size: 11px;
+            color: var(--gray-dark);
+            white-space: nowrap;
+        }
+
+        .exp-role {
+            font-size: 12px;
+            color: var(--cyan);
+            margin-bottom: 4px;
+        }
+
+        .exp-desc {
+            font-size: 12px;
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-bullets li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: var(--white);
+            line-height: 1.65;
+        }
+
+        .exp-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--green-dim);
+            font-weight: 700;
+        }
+
+        .exp-stack {
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--gray-dark);
+        }
+
+        .exp-stack span {
+            color: var(--yellow);
+        }
+
+        .highlight {
+            color: var(--green-dim);
+            font-weight: 500;
+        }
+
+        /* ── Competencies Grid ───────────────────────────────── */
+        .comp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+        }
+
+        .comp-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .comp-label {
+            color: var(--white);
+            flex: 1;
+        }
+
+        .comp-bar {
+            display: flex;
+            gap: 2px;
+        }
+
+        .comp-bar .filled {
+            width: 8px;
+            height: 8px;
+            background: var(--green-dim);
+            border-radius: 1px;
+        }
+
+        .comp-bar .empty {
+            width: 8px;
+            height: 8px;
+            background: var(--green-dark);
+            border-radius: 1px;
+            opacity: 0.4;
+        }
+
+        /* ── Education ───────────────────────────────────────── */
+        .edu-block {
+            padding: 12px 18px;
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--green-dark);
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .edu-year {
+            font-size: 11px;
+            color: var(--gray-dark);
+        }
+
+        .edu-name {
+            font-size: 13px;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .edu-detail {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        /* ── Terminal Easter Egg ─────────────────────────────── */
+        .terminal-status {
+            margin-top: 32px;
+            padding: 12px 18px;
+            border: 1px dashed var(--green-dark);
+            border-radius: 4px;
+            font-size: 11px;
+            color: var(--green-dark);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .terminal-status .status-line {
+            color: var(--gray-dark);
+        }
+
+        /* ── Footer ──────────────────────────────────────────── */
+        .footer {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 10px;
+            color: var(--gray-dark);
+            letter-spacing: 0.5px;
+        }
+
+        .footer a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        /* ── Print / PDF ─────────────────────────────────────── */
+        @media print {
+            html {
+                font-size: 11px;
+            }
+
+            body {
+                background: var(--bg) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            .page {
+                padding: 24px 32px;
+                max-width: 100%;
+            }
+
+            .header-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .exp-block, .edu-block, .comp-item {
+                break-inside: avoid;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 10mm;
+        }
+
+        /* ── Responsive (screen) ─────────────────────────────── */
+        @media screen and (max-width: 600px) {
+            .page {
+                padding: 20px 16px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .header-contacts {
+                justify-content: center;
+            }
+
+            .comp-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exp-header {
+                flex-direction: column;
+            }
+
+            .header-name {
+                font-size: 22px;
+            }
+        }
+
+        /* ── Print button ────────────────────────────────────── */
+        .print-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 10px 20px;
+            background: var(--green-dark);
+            color: var(--green);
+            border: 1px solid var(--green-dim);
+            border-radius: 6px;
+            font-family: var(--font);
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .print-btn:hover {
+            background: var(--green-dim);
+            color: var(--bg);
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ── Header ──────────────────────────────────────────── -->
+    <div class="header">
+        <img src="/img/portrait.png?v=2" alt="Andrew Korolev" class="header-photo">
+        <div class="header-info">
+            <div class="header-name">ANDREW KOROLEV</div>
+            <div class="header-title">Staff Engineer / Principal Architect</div>
+            <div class="header-summary">
+                Experienced Staff Engineer &amp; Backend Architect with 18 years of hands-on experience.
+                Specializing in high-load architecture, mission-critical fault-tolerant systems from scratch,
+                and rescuing complex monoliths. Core expertise: FinTech (crypto-processing, Web3),
+                E-commerce (catalogs with tens of millions of SKUs, PIM/MDM),
+                and integrating AI solutions (LLM) into real business processes.
+            </div>
+            <div class="header-contacts">
+                <span class="contact-item"><span class="contact-label">Email:</span> <a href="mailto:andrew@korolev.tech">andrew@korolev.tech</a></span>
+                <span class="contact-item"><span class="contact-label">Telegram:</span> <a href="https://t.me/gimguo" target="_blank">@gimguo</a></span>
+                <span class="contact-item"><span class="contact-label">Web:</span> <a href="https://korolev.tech" target="_blank">korolev.tech</a></span>
+            </div>
+            <div class="format-badge">Remote · B2B / Contract · Result-driven · Zero-Bullshit culture</div>
+        </div>
+    </div>
+
+    <!-- ── Experience ──────────────────────────────────────── -->
+    <div class="section">
+        <div class="section-title">Experience</div>
+
+        <!-- 1: Own project -->
+        <div class="exp-block">
+            <div class="exp-header">
+                <div class="exp-company">Own Project (Sole Proprietor)</div>
+                <div class="exp-dates">Sep 2024 — Present</div>
+            </div>
+            <div class="exp-role">Principal Engineer / Software Architect</div>
+            <div class="exp-desc">B2B SaaS platform development (PIM/MDM, AI, ERP, Price Aggregator). Solo founder &amp; architect after a successful exit from a previous startup. Acting as an independent Fractional Architect for B2B clients.</div>
+            <ul class="exp-bullets">
+                <li><span class="highlight">Headless E-commerce &amp; Multi-tenant Architecture:</span> Designed a universal core and white-label storefront system — launching a fully new online store from scratch in minimal time.</li>
+                <li><span class="highlight">Deep AI Integration (LLM):</span> Automated content workflows — AI assistants autonomously heal product cards, generate descriptions, build catalog trees, and distribute products from different suppliers.</li>
+                <li><span class="highlight">Data Processing Engine:</span> Built a price parsing, aggregation, and contract processing engine. Implemented custom PIM &amp; MDM systems for full product lifecycle management.</li>
+            </ul>
+            <div class="exp-stack">Stack: <span>Go, PHP, AI Integrations (LLM, RAG), PIM, MDM, PostgreSQL, Docker</span></div>
+        </div>
+
+        <!-- 2: MoneyChange -->
+        <div class="exp-block">
+            <div class="exp-header">
+                <div class="exp-company">MoneyChange</div>
+                <div class="exp-dates">Sep 2018 — Nov 2024 · 6 yr 3 mo</div>
+            </div>
+            <div class="exp-role">Tech Lead / Architect (Go, PHP)</div>
+            <div class="exp-desc">FinTech startup — international crypto transfers &amp; B2B exchanges. Key engineer from day one. Designed and built the entire technical foundation of a platform that processed $20M+ in Bitcoin volume with high margins.</div>
+            <ul class="exp-bullets">
+                <li><span class="highlight">Core Architecture:</span> Designed a fault-tolerant FinTech platform core (cross-exchange arbitrage). Single-handedly deployed and maintained a cluster of crypto nodes (Bitcoin, Ethereum, Monero…) on Docker Swarm.</li>
+                <li><span class="highlight">B2B Integrations:</span> Built technical integrations with 7 partner exchanges. Coordinated external IT teams, platform served 50+ operators.</li>
+                <li><span class="highlight">Stack Migration:</span> Initiated successful migration of critical financial modules to Go + PostgreSQL for order-of-magnitude throughput scaling.</li>
+                <li><span class="highlight">DevSecOps:</span> Built a robust security perimeter for high-risk assets — repelled dozens of hacking attempts and social engineering attacks.</li>
+            </ul>
+            <div class="exp-stack">Stack: <span>Go, PHP, PostgreSQL, Docker Swarm, RabbitMQ, Web3, React</span></div>
+        </div>
+
+        <!-- 3: Automix -->
+        <div class="exp-block">
+            <div class="exp-header">
+                <div class="exp-company">Automix</div>
+                <div class="exp-dates">Jan 2014 — Jun 2021 · 7 yr 6 mo</div>
+            </div>
+            <div class="exp-role">Lead PHP Developer / Architect (from 2018 — Technical Consultant)</div>
+            <div class="exp-desc">Major e-commerce auto parts aggregator. The system I built from scratch became the key technology asset that contributed to a successful company sale (M&amp;A deal).</div>
+            <ul class="exp-bullets">
+                <li><span class="highlight">High-load Architecture:</span> Designed and led development of a platform processing a catalog of 40M+ SKUs with 3× daily update cycles.</li>
+                <li><span class="highlight">Database Optimization:</span> Accelerated MariaDB performance through schema redesign. Implemented RabbitMQ for async queue processing under peak high-load.</li>
+                <li><span class="highlight">Technical Consulting (2018–2021):</span> After company acquisition, served as technical consultant to the buyer's IT department — ensuring business continuity and knowledge transfer through the transition.</li>
+            </ul>
+            <div class="exp-stack">Stack: <span>PHP, Yii2, MariaDB, RabbitMQ, Redis, Sphinx, Docker Swarm</span></div>
+        </div>
+
+        <!-- 4: TorSystems -->
+        <div class="exp-block">
+            <div class="exp-header">
+                <div class="exp-company">TorSystems</div>
+                <div class="exp-dates">Jan 2014 — Sep 2014 · 9 mo</div>
+            </div>
+            <div class="exp-role">Web Developer</div>
+            <div class="exp-desc">Server-side MMO game development &amp; RESTful API. Database design, microservices, async game event processing.</div>
+            <div class="exp-stack">Stack: <span>PHP, Yii2, MariaDB, RabbitMQ, Docker</span></div>
+        </div>
+
+        <!-- 5: Sirius -->
+        <div class="exp-block">
+            <div class="exp-header">
+                <div class="exp-company">OOO Sirius</div>
+                <div class="exp-dates">Oct 2011 — Dec 2013 · 2 yr 3 mo</div>
+            </div>
+            <div class="exp-role">Full-stack Developer</div>
+            <div class="exp-desc">Full-stack web app development, business logic, payment system integrations.</div>
+            <div class="exp-stack">Stack: <span>PHP, MySQL, MongoDB, Symfony</span></div>
+        </div>
+
+        <!-- 6: Vianor -->
+        <div class="exp-block">
+            <div class="exp-header">
+                <div class="exp-company">VIANOR Tire Center</div>
+                <div class="exp-dates">Mar 2010 — May 2011 · 1 yr 3 mo</div>
+            </div>
+            <div class="exp-role">PHP Developer</div>
+            <div class="exp-desc">E-commerce: product catalog, shopping cart, customer portal, and info kiosk software.</div>
+            <div class="exp-stack">Stack: <span>PHP, MySQL</span></div>
+        </div>
+
+    </div>
+
+    <!-- ── Key Competencies ────────────────────────────────── -->
+    <div class="section">
+        <div class="section-title">Key Competencies</div>
+        <div class="comp-grid">
+            <div class="comp-item">
+                <span class="comp-label">Go / Golang</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">PHP / Yii2</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">PostgreSQL / MariaDB</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">Docker / Swarm / K8s</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">System Architecture</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">Linux / Infrastructure</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">Web3 / Blockchain</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span><span class="empty"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">AI / LLM Integration</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span><span class="empty"></span><span class="empty"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">RabbitMQ / Messaging</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span>
+                </div>
+            </div>
+            <div class="comp-item">
+                <span class="comp-label">CI/CD Pipelines</span>
+                <div class="comp-bar">
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                    <span class="empty"></span><span class="empty"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Education ───────────────────────────────────────── -->
+    <div class="section">
+        <div class="section-title">Education</div>
+
+        <div class="edu-block">
+            <div class="edu-year">2007</div>
+            <div class="edu-name">Novosibirsk State Technical University (NSTU)</div>
+            <div class="edu-detail">Faculty of Automation and Computer Engineering</div>
+        </div>
+
+        <div class="edu-block">
+            <div class="edu-year">2007</div>
+            <div class="edu-name">Lingua Language Center</div>
+            <div class="edu-detail">Translator in the field of professional communication</div>
+        </div>
+    </div>
+
+    <!-- ── Terminal Easter Egg ─────────────────────────────── -->
+    <div class="terminal-status">
+        <div class="status-line">$ system-check --target=candidate --verbose</div>
+        <div>[ <span style="color: var(--green-dim);">OK</span> ] System Analysis: <span style="color: var(--green);">COMPLETED</span></div>
+        <div>[ <span style="color: var(--green-dim);">OK</span> ] Skill Verification: <span style="color: var(--green);">PASSED</span></div>
+        <div>[ <span style="color: var(--green-dim);">OK</span> ] Culture Fit: <span style="color: var(--yellow);">ZERO_BULLSHIT_COMPATIBLE</span></div>
+        <div>[ <span style="color: var(--green-dim);">OK</span> ] Availability: <span style="color: var(--green);">READY</span></div>
+    </div>
+
+    <!-- ── Footer ──────────────────────────────────────────── -->
+    <div class="footer">
+        Generated by <a href="https://korolev.tech">korolev.tech</a> · Last updated: March 2026
+    </div>
+
+</div>
+
+<!-- Print button (hidden when printing) -->
+<button class="print-btn no-print" onclick="window.print()">⎙ Save as PDF</button>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
     <meta name="description" content="Andrew Korolev — Principal Engineer. Terminal-style portfolio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css?v=5">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
@@ -25,19 +25,13 @@
             <div class="terminal-title">andrey@korolev.tech: ~</div>
         </div>
 
-        <!-- ID strip under header -->
-        <div id="id-strip">
-            <div id="id-photo-wrap">
-                <img src="/img/portrait.png" alt="AK" id="id-photo">
-            </div>
-            <div id="id-text">
-                <div class="id-name">Andrew Korolev</div>
-                <div class="id-role">Principal Engineer / System Architect</div>
-                <div class="id-status">● ONLINE</div>
-            </div>
-        </div>
-
         <div id="terminal-body">
+            <!-- Photo with CRT scanline effect — scrolls up like a splash -->
+            <div id="crt-photo">
+                <img src="/img/portrait.png?v=4" alt="AK" id="crt-img">
+                <div class="crt-scanlines"></div>
+                <div class="crt-vignette"></div>
+            </div>
             <div id="output"></div>
             <div id="input-line">
                 <span class="prompt">visitor@korolev.tech:~$&nbsp;</span>
@@ -47,12 +41,6 @@
         </div>
     </div>
 
-    <!-- Photo lightbox -->
-    <div id="lightbox">
-        <img src="/img/portrait.png" alt="Andrew Korolev" id="lightbox-img">
-        <div id="lightbox-hint">click anywhere or ESC to close</div>
-    </div>
-
-    <script src="/script.js"></script>
+    <script src="/script.js?v=5"></script>
 </body>
 </html>
