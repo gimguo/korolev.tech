@@ -520,27 +520,22 @@ async function boot() {
   }
 
   // ── Phase 2: Photo with dot-matrix frame ─────────────────
-  appendOutput('');
-  appendOutput('<span class="output-info">  ┌──────────────────────────────────┐</span>');
-  appendOutput('<span class="output-info">  │ <span class="output-text">SCANNING BIOMETRIC DATA...</span>       │</span>');
-  appendOutput('<span class="output-info">  │                                  │</span>');
+  // ── Phase 2: Biometric block (wrapped with spacing) ─────
+  const bioBlock = document.createElement('div');
+  bioBlock.className = 'bio-block';
+  bioBlock.innerHTML = [
+    '<div class="line"><span class="output-info">  ┌──────────────────────────────────┐</span></div>',
+    '<div class="line"><span class="output-info">  │ <span class="output-text">SCANNING BIOMETRIC DATA...</span>       │</span></div>',
+    '<div class="line"><span class="output-info">  │                                  │</span></div>',
+    '<div class="line"><div class="boot-photo-frame"><div class="boot-photo-inner"><img src="/img/portrait.png?v=14" alt="AK" class="boot-photo-img"><div class="boot-scanlines"></div></div></div></div>',
+    '<div class="line"><span class="output-info">  │                                  │</span></div>',
+    '<div class="line"><span class="output-info">  │ <span class="boot-ok">IDENTIFIED</span> · <span class="output-cyan">Andrew Korolev</span>       │</span></div>',
+    '<div class="line"><span class="output-info">  │ <span class="output-text">ACCESS LEVEL:</span> <span class="output-highlight">PRINCIPAL</span>          │</span></div>',
+    '<div class="line"><span class="output-info">  └──────────────────────────────────┘</span></div>',
+  ].join('');
+  appendElement(bioBlock);
   scrollToBottom();
-  await delay(200);
-
-  // Insert photo element
-  const photoWrap = document.createElement('div');
-  photoWrap.className = 'boot-photo-frame';
-  photoWrap.innerHTML = '<div class="boot-photo-inner"><img src="/img/portrait.png?v=13" alt="AK" class="boot-photo-img"><div class="boot-scanlines"></div></div>';
-  appendElement(photoWrap);
-  scrollToBottom();
-  await delay(400);
-
-  appendOutput('<span class="output-info">  │                                  │</span>');
-  appendOutput('<span class="output-info">  │ <span class="boot-ok">IDENTIFIED</span> · <span class="output-cyan">Andrew Korolev</span>       │</span>');
-  appendOutput('<span class="output-info">  │ <span class="output-text">ACCESS LEVEL:</span> <span class="output-highlight">PRINCIPAL</span>          │</span>');
-  appendOutput('<span class="output-info">  └──────────────────────────────────┘</span>');
-  appendOutput('');
-  appendOutput('');
+  await delay(500);
   scrollToBottom();
   await delay(200);
 
