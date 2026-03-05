@@ -62,18 +62,29 @@ const COMMANDS = {
     '  ✉️   Email:     <a class="output-link" href="mailto:andrew@korolev.tech">andrew@korolev.tech</a>',
     '  🔗  GitHub:    <a class="output-link" href="https://github.com/akorolev" target="_blank">github.com/akorolev</a>',
     '  💬  Telegram:  <a class="output-link" href="https://t.me/gimguo" target="_blank">@gimguo</a>',
-    '  📄  Resume:    <a class="output-link" href="/resume.html" target="_blank">korolev.tech/resume</a>',
+    '  📄  CV:        <a class="output-link" href="/cv.html" target="_blank">korolev.tech/cv</a>',
+    '  📝  Resume:    <a class="output-link" href="/resume.html" target="_blank">korolev.tech/resume (RU)</a>',
     '',
     '  <span class="output-info">Open to interesting challenges and collaborations.</span>',
     '',
   ],
 
+  cv: () => {
+    window.open('/cv.html', '_blank');
+    return [
+      '',
+      '  <span class="output-info">📄 Opening CV (English) in a new tab...</span>',
+      '  <span class="output-info">   Use "Save as PDF" button or Ctrl+P to export.</span>',
+      '',
+    ];
+  },
+
   resume: () => {
     window.open('/resume.html', '_blank');
     return [
       '',
-      '  <span class="output-info">📄 Opening resume in a new tab...</span>',
-      '  <span class="output-info">   Use "Save as PDF" button or Ctrl+P to export.</span>',
+      '  <span class="output-info">📄 Открываю резюме (Русский) в новой вкладке...</span>',
+      '  <span class="output-info">   Используйте кнопку «Сохранить в PDF» или Ctrl+P.</span>',
       '',
     ];
   },
@@ -85,7 +96,8 @@ const COMMANDS = {
     '  <span class="output-cyan">whoami</span>       — About me',
     '  <span class="output-cyan">skills</span>       — Technical skills',
     '  <span class="output-cyan">contact</span>      — Contact information',
-    '  <span class="output-cyan">resume</span>       — Open CV in new tab',
+    '  <span class="output-cyan">cv</span>           — Open CV (English)',
+    '  <span class="output-cyan">resume</span>       — Резюме (Русский)',
     '  <span class="output-cyan">clear</span>        — Clear terminal',
     '  <span class="output-cyan">help</span>         — Show this message',
     '',
@@ -156,7 +168,7 @@ const FILESYSTEM = {
 // ── ASCII-баннер ───────────────────────────────────────────
 
 const BANNER = `<span class="ascii-art">
-  <span class="output-highlight">🔑</span>
+  <span class="output-highlight">🔧</span>
   ██╗  ██╗ ██████╗ ██████╗  ██████╗ ██╗     ███████╗██╗   ██╗
   ██║ ██╔╝██╔═══██╗██╔══██╗██╔═══██╗██║     ██╔════╝██║   ██║
   █████╔╝ ██║   ██║██████╔╝██║   ██║██║     █████╗  ██║   ██║

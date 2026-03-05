@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Korolev — Resume</title>
-    <meta name="description" content="Andrew Korolev — Staff Engineer / Principal Architect. Resume.">
+    <title>Андрей Королёв — Резюме</title>
+    <meta name="description" content="Андрей Королёв — Staff Engineer / Principal Architect. Резюме.">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ═══════════════════════════════════════════════════════
-           Andrew Korolev — Resume / CV
+           Андрей Королёв — Резюме (RU)
            Dark terminal-style, optimized for print-to-PDF
            ═══════════════════════════════════════════════════════ */
 
@@ -28,15 +28,9 @@
             --font:      'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            font-size: 13px;
-        }
+        html { font-size: 13px; }
 
         body {
             background: var(--bg);
@@ -46,14 +40,9 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ── Page Container ──────────────────────────────────── */
-        .page {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 40px 48px;
-        }
+        .page { max-width: 850px; margin: 0 auto; padding: 40px 48px; }
 
-        /* ── Header ──────────────────────────────────────────── */
+        /* ── Header ──────────────────────────────────────── */
         .header {
             display: flex;
             align-items: flex-start;
@@ -73,9 +62,7 @@
             flex-shrink: 0;
         }
 
-        .header-info {
-            flex: 1;
-        }
+        .header-info { flex: 1; }
 
         .header-name {
             font-size: 28px;
@@ -107,24 +94,11 @@
             font-size: 12px;
         }
 
-        .contact-item {
-            color: var(--gray);
-        }
+        .contact-item { color: var(--gray); }
+        .contact-item a { color: var(--cyan); text-decoration: none; }
+        .contact-item a:hover { text-decoration: underline; }
+        .contact-label { color: var(--gray-dark); }
 
-        .contact-item a {
-            color: var(--cyan);
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        .contact-label {
-            color: var(--gray-dark);
-        }
-
-        /* ── Format Badge ────────────────────────────────────── */
         .format-badge {
             display: inline-block;
             margin-top: 10px;
@@ -136,10 +110,38 @@
             letter-spacing: 0.5px;
         }
 
-        /* ── Section ─────────────────────────────────────────── */
-        .section {
-            margin-bottom: 28px;
+        /* ── Language Switch ──────────────────────────────── */
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 16px;
+            font-size: 12px;
         }
+
+        .lang-switch a {
+            color: var(--cyan);
+            text-decoration: none;
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .lang-switch a:hover {
+            background: var(--green-dark);
+            border-color: var(--green-dim);
+            color: var(--green);
+        }
+
+        .lang-switch .active {
+            background: var(--green-dark);
+            color: var(--green);
+            border-color: var(--green-dim);
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* ── Section ─────────────────────────────────────── */
+        .section { margin-bottom: 28px; }
 
         .section-title {
             font-size: 15px;
@@ -161,7 +163,7 @@
             font-weight: 400;
         }
 
-        /* ── Experience Block ────────────────────────────────── */
+        /* ── Experience Block ────────────────────────────── */
         .exp-block {
             margin-bottom: 22px;
             padding: 16px 18px;
@@ -180,35 +182,12 @@
             margin-bottom: 6px;
         }
 
-        .exp-company {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--white);
-        }
+        .exp-company { font-size: 14px; font-weight: 600; color: var(--white); }
+        .exp-dates { font-size: 11px; color: var(--gray-dark); white-space: nowrap; }
+        .exp-role { font-size: 12px; color: var(--cyan); margin-bottom: 4px; }
+        .exp-desc { font-size: 12px; color: var(--gray); margin-bottom: 10px; font-style: italic; }
 
-        .exp-dates {
-            font-size: 11px;
-            color: var(--gray-dark);
-            white-space: nowrap;
-        }
-
-        .exp-role {
-            font-size: 12px;
-            color: var(--cyan);
-            margin-bottom: 4px;
-        }
-
-        .exp-desc {
-            font-size: 12px;
-            color: var(--gray);
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
-        .exp-bullets {
-            list-style: none;
-            padding: 0;
-        }
+        .exp-bullets { list-style: none; padding: 0; }
 
         .exp-bullets li {
             position: relative;
@@ -227,22 +206,11 @@
             font-weight: 700;
         }
 
-        .exp-stack {
-            margin-top: 10px;
-            font-size: 11px;
-            color: var(--gray-dark);
-        }
+        .exp-stack { margin-top: 10px; font-size: 11px; color: var(--gray-dark); }
+        .exp-stack span { color: var(--yellow); }
+        .highlight { color: var(--green-dim); font-weight: 500; }
 
-        .exp-stack span {
-            color: var(--yellow);
-        }
-
-        .highlight {
-            color: var(--green-dim);
-            font-weight: 500;
-        }
-
-        /* ── Competencies Grid ───────────────────────────────── */
+        /* ── Competencies Grid ───────────────────────────── */
         .comp-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -260,32 +228,13 @@
             font-size: 12px;
         }
 
-        .comp-label {
-            color: var(--white);
-            flex: 1;
-        }
+        .comp-label { color: var(--white); flex: 1; }
 
-        .comp-bar {
-            display: flex;
-            gap: 2px;
-        }
+        .comp-bar { display: flex; gap: 2px; }
+        .comp-bar .filled { width: 8px; height: 8px; background: var(--green-dim); border-radius: 1px; }
+        .comp-bar .empty { width: 8px; height: 8px; background: var(--green-dark); border-radius: 1px; opacity: 0.4; }
 
-        .comp-bar .filled {
-            width: 8px;
-            height: 8px;
-            background: var(--green-dim);
-            border-radius: 1px;
-        }
-
-        .comp-bar .empty {
-            width: 8px;
-            height: 8px;
-            background: var(--green-dark);
-            border-radius: 1px;
-            opacity: 0.4;
-        }
-
-        /* ── Education ───────────────────────────────────────── */
+        /* ── Education ───────────────────────────────────── */
         .edu-block {
             padding: 12px 18px;
             background: var(--bg-section);
@@ -295,23 +244,11 @@
             margin-bottom: 10px;
         }
 
-        .edu-year {
-            font-size: 11px;
-            color: var(--gray-dark);
-        }
+        .edu-year { font-size: 11px; color: var(--gray-dark); }
+        .edu-name { font-size: 13px; color: var(--white); font-weight: 500; }
+        .edu-detail { font-size: 12px; color: var(--gray); }
 
-        .edu-name {
-            font-size: 13px;
-            color: var(--white);
-            font-weight: 500;
-        }
-
-        .edu-detail {
-            font-size: 12px;
-            color: var(--gray);
-        }
-
-        /* ── Terminal Easter Egg ─────────────────────────────── */
+        /* ── Terminal Easter Egg ──────────────────────────── */
         .terminal-status {
             margin-top: 32px;
             padding: 12px 18px;
@@ -323,11 +260,9 @@
             letter-spacing: 1px;
         }
 
-        .terminal-status .status-line {
-            color: var(--gray-dark);
-        }
+        .terminal-status .status-line { color: var(--gray-dark); }
 
-        /* ── Footer ──────────────────────────────────────────── */
+        /* ── Footer ──────────────────────────────────────── */
         .footer {
             margin-top: 20px;
             padding-top: 16px;
@@ -338,82 +273,38 @@
             letter-spacing: 0.5px;
         }
 
-        .footer a {
-            color: var(--cyan);
-            text-decoration: none;
-        }
+        .footer a { color: var(--cyan); text-decoration: none; }
 
-        /* ── Print / PDF ─────────────────────────────────────── */
+        /* ── Print / PDF ─────────────────────────────────── */
         @media print {
-            html {
-                font-size: 11px;
-            }
-
+            html { font-size: 11px; }
             body {
                 background: var(--bg) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 color-adjust: exact !important;
             }
-
-            .page {
-                padding: 24px 32px;
-                max-width: 100%;
-            }
-
-            .header-photo {
-                width: 100px;
-                height: 100px;
-            }
-
-            .exp-block, .edu-block, .comp-item {
-                break-inside: avoid;
-            }
-
-            .section {
-                break-inside: avoid;
-            }
-
-            .no-print {
-                display: none !important;
-            }
+            .page { padding: 24px 32px; max-width: 100%; }
+            .header-photo { width: 100px; height: 100px; }
+            .exp-block, .edu-block, .comp-item { break-inside: avoid; }
+            .section { break-inside: avoid; }
+            .no-print { display: none !important; }
+            .lang-switch { display: none !important; }
         }
 
-        @page {
-            size: A4;
-            margin: 12mm 10mm;
-        }
+        @page { size: A4; margin: 12mm 10mm; }
 
-        /* ── Responsive (screen) ─────────────────────────────── */
+        /* ── Responsive ──────────────────────────────────── */
         @media screen and (max-width: 600px) {
-            .page {
-                padding: 20px 16px;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .header-contacts {
-                justify-content: center;
-            }
-
-            .comp-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .exp-header {
-                flex-direction: column;
-            }
-
-            .header-name {
-                font-size: 22px;
-            }
+            .page { padding: 20px 16px; }
+            .header { flex-direction: column; align-items: center; text-align: center; }
+            .header-contacts { justify-content: center; }
+            .comp-grid { grid-template-columns: 1fr; }
+            .exp-header { flex-direction: column; }
+            .header-name { font-size: 22px; }
         }
 
-        /* ── Print button ────────────────────────────────────── */
+        /* ── Print button ────────────────────────────────── */
         .print-btn {
             position: fixed;
             bottom: 24px;
@@ -441,119 +332,126 @@
 
 <div class="page">
 
+    <!-- ── Language Switch ────────────────────────────────── -->
+    <div class="lang-switch no-print">
+        <a href="/cv.html">🇬🇧 English CV</a>
+        <a href="/resume.html" class="active">🇷🇺 Резюме</a>
+    </div>
+
     <!-- ── Header ──────────────────────────────────────────── -->
     <div class="header">
-        <img src="/img/portrait.png?v=2" alt="Andrew Korolev" class="header-photo">
+        <img src="/img/portrait.png?v=4" alt="Андрей Королёв" class="header-photo">
         <div class="header-info">
-            <div class="header-name">ANDREW KOROLEV</div>
+            <div class="header-name">АНДРЕЙ КОРОЛЁВ</div>
             <div class="header-title">Staff Engineer / Principal Architect</div>
             <div class="header-summary">
-                Experienced Staff Engineer &amp; Backend Architect with 18 years of hands-on experience.
-                Specializing in high-load architecture, mission-critical fault-tolerant systems from scratch,
-                and rescuing complex monoliths. Core expertise: FinTech (crypto-processing, Web3),
-                E-commerce (catalogs with tens of millions of SKUs, PIM/MDM),
-                and integrating AI solutions (LLM) into real business processes.
+                Опытный Staff Engineer и Backend-архитектор с 18-летним бэкграундом.
+                Специализируюсь на проектировании Highload-архитектуры, отказоустойчивых
+                (mission-critical) систем с нуля и спасении сложных монолитов.
+                Ключевая экспертиза — FinTech (крипто-процессинг, Web3), E-commerce (каталоги
+                на десятки миллионов SKU, PIM/MDM) и интеграция AI-решений (LLM) в реальные
+                бизнес-процессы.
             </div>
             <div class="header-contacts">
                 <span class="contact-item"><span class="contact-label">Email:</span> <a href="mailto:andrew@korolev.tech">andrew@korolev.tech</a></span>
                 <span class="contact-item"><span class="contact-label">Telegram:</span> <a href="https://t.me/gimguo" target="_blank">@gimguo</a></span>
-                <span class="contact-item"><span class="contact-label">Web:</span> <a href="https://korolev.tech" target="_blank">korolev.tech</a></span>
+                <span class="contact-item"><span class="contact-label">Сайт:</span> <a href="https://korolev.tech" target="_blank">korolev.tech</a></span>
             </div>
-            <div class="format-badge">Remote · B2B / Contract · Result-driven · Zero-Bullshit culture</div>
+            <div class="format-badge">Удалённая работа · B2B / ИП · Проектная работа · Частичная занятость</div>
         </div>
     </div>
 
-    <!-- ── Experience ──────────────────────────────────────── -->
+    <!-- ── Опыт работы ─────────────────────────────────────── -->
     <div class="section">
-        <div class="section-title">Experience</div>
+        <div class="section-title">Опыт работы</div>
 
-        <!-- 1: Own project -->
+        <!-- 1: Собственный проект -->
         <div class="exp-block">
             <div class="exp-header">
-                <div class="exp-company">Own Project (Sole Proprietor)</div>
-                <div class="exp-dates">Sep 2024 — Present</div>
+                <div class="exp-company">Собственный проект (ИП)</div>
+                <div class="exp-dates">Сен 2024 — настоящее время</div>
             </div>
             <div class="exp-role">Principal Engineer / Software Architect</div>
-            <div class="exp-desc">B2B SaaS platform development (PIM/MDM, AI, ERP, Price Aggregator). Solo founder &amp; architect after a successful exit from a previous startup. Acting as an independent Fractional Architect for B2B clients.</div>
+            <div class="exp-desc">Разработка B2B SaaS-платформы (PIM/MDM, AI, ERP, агрегатор цен). Соло-основатель и архитектор после успешного выхода из предыдущего стартапа. Работаю как независимый Fractional Architect для B2B-клиентов.</div>
             <ul class="exp-bullets">
-                <li><span class="highlight">Headless E-commerce &amp; Multi-tenant Architecture:</span> Designed a universal core and white-label storefront system — launching a fully new online store from scratch in minimal time.</li>
-                <li><span class="highlight">Deep AI Integration (LLM):</span> Automated content workflows — AI assistants autonomously heal product cards, generate descriptions, build catalog trees, and distribute products from different suppliers.</li>
-                <li><span class="highlight">Data Processing Engine:</span> Built a price parsing, aggregation, and contract processing engine. Implemented custom PIM &amp; MDM systems for full product lifecycle management.</li>
+                <li><span class="highlight">Headless E-commerce и мультитенантная архитектура:</span> Спроектировал универсальное ядро и систему white-label витрин — запуск нового интернет-магазина с нуля за минимальное время.</li>
+                <li><span class="highlight">Глубокая интеграция AI (LLM):</span> Автоматизация контентных процессов — AI-ассистенты автономно лечат карточки товаров, генерируют описания, строят деревья каталогов, распределяют товары от разных поставщиков.</li>
+                <li><span class="highlight">Движок обработки данных:</span> Построил движок парсинга, агрегации и обработки прайс-листов. Реализовал кастомные PIM и MDM системы для полного управления жизненным циклом товаров.</li>
             </ul>
-            <div class="exp-stack">Stack: <span>Go, PHP, AI Integrations (LLM, RAG), PIM, MDM, PostgreSQL, Docker</span></div>
+            <div class="exp-stack">Стек: <span>Go, PHP, AI Integrations (LLM, RAG), PIM, MDM, PostgreSQL, Docker</span></div>
         </div>
 
         <!-- 2: MoneyChange -->
         <div class="exp-block">
             <div class="exp-header">
                 <div class="exp-company">MoneyChange</div>
-                <div class="exp-dates">Sep 2018 — Nov 2024 · 6 yr 3 mo</div>
+                <div class="exp-dates">Сен 2018 — Ноя 2024 · 6 лет 3 мес</div>
             </div>
             <div class="exp-role">Tech Lead / Architect (Go, PHP)</div>
-            <div class="exp-desc">FinTech startup — international crypto transfers &amp; B2B exchanges. Key engineer from day one. Designed and built the entire technical foundation of a platform that processed $20M+ in Bitcoin volume with high margins.</div>
+            <div class="exp-desc">FinTech-стартап — международные крипто-переводы и B2B-обмены. Ключевой инженер с первого дня. Спроектировал и построил всю техническую основу платформы, обработавшей $20M+ объёма Bitcoin с высокой маржинальностью.</div>
             <ul class="exp-bullets">
-                <li><span class="highlight">Core Architecture:</span> Designed a fault-tolerant FinTech platform core (cross-exchange arbitrage). Single-handedly deployed and maintained a cluster of crypto nodes (Bitcoin, Ethereum, Monero…) on Docker Swarm.</li>
-                <li><span class="highlight">B2B Integrations:</span> Built technical integrations with 7 partner exchanges. Coordinated external IT teams, platform served 50+ operators.</li>
-                <li><span class="highlight">Stack Migration:</span> Initiated successful migration of critical financial modules to Go + PostgreSQL for order-of-magnitude throughput scaling.</li>
-                <li><span class="highlight">DevSecOps:</span> Built a robust security perimeter for high-risk assets — repelled dozens of hacking attempts and social engineering attacks.</li>
+                <li><span class="highlight">Ядро архитектуры:</span> Спроектировал отказоустойчивое ядро FinTech-платформы (кросс-биржевой арбитраж). В одиночку развернул и поддерживал кластер крипто-нод (Bitcoin, Ethereum, Monero…) на Docker Swarm.</li>
+                <li><span class="highlight">B2B-интеграции:</span> Построил технические интеграции с 7 партнёрскими биржами. Координировал внешние IT-команды, платформа обслуживала 50+ операторов.</li>
+                <li><span class="highlight">Миграция стека:</span> Инициировал миграцию критических финансовых модулей на Go + PostgreSQL для кратного увеличения пропускной способности.</li>
+                <li><span class="highlight">DevSecOps:</span> Построил надёжный периметр безопасности для высокорисковых активов — отразил десятки попыток взлома и социальной инженерии.</li>
             </ul>
-            <div class="exp-stack">Stack: <span>Go, PHP, PostgreSQL, Docker Swarm, RabbitMQ, Web3, React</span></div>
+            <div class="exp-stack">Стек: <span>Go, PHP, PostgreSQL, Docker Swarm, RabbitMQ, Web3, React</span></div>
         </div>
 
         <!-- 3: Automix -->
         <div class="exp-block">
             <div class="exp-header">
                 <div class="exp-company">Automix</div>
-                <div class="exp-dates">Jan 2014 — Jun 2021 · 7 yr 6 mo</div>
+                <div class="exp-dates">Янв 2014 — Июн 2021 · 7 лет 6 мес</div>
             </div>
-            <div class="exp-role">Lead PHP Developer / Architect (from 2018 — Technical Consultant)</div>
-            <div class="exp-desc">Major e-commerce auto parts aggregator. The system I built from scratch became the key technology asset that contributed to a successful company sale (M&amp;A deal).</div>
+            <div class="exp-role">Lead PHP Developer / Architect (с 2018 — Technical Consultant)</div>
+            <div class="exp-desc">Крупный e-commerce агрегатор автозапчастей. Система, которую я построил с нуля, стала ключевым технологическим активом, способствовавшим успешной продаже компании (M&amp;A сделка).</div>
             <ul class="exp-bullets">
-                <li><span class="highlight">High-load Architecture:</span> Designed and led development of a platform processing a catalog of 40M+ SKUs with 3× daily update cycles.</li>
-                <li><span class="highlight">Database Optimization:</span> Accelerated MariaDB performance through schema redesign. Implemented RabbitMQ for async queue processing under peak high-load.</li>
-                <li><span class="highlight">Technical Consulting (2018–2021):</span> After company acquisition, served as technical consultant to the buyer's IT department — ensuring business continuity and knowledge transfer through the transition.</li>
+                <li><span class="highlight">Highload-архитектура:</span> Спроектировал и возглавил разработку платформы, обрабатывающей каталог из 40M+ SKU с 3-кратным циклом обновлений в сутки.</li>
+                <li><span class="highlight">Оптимизация БД:</span> Ускорил MariaDB через редизайн схемы. Внедрил RabbitMQ для асинхронной обработки очередей под пиковой нагрузкой.</li>
+                <li><span class="highlight">Техническое консультирование (2018–2021):</span> После продажи компании работал техническим консультантом для IT-отдела покупателя — обеспечил непрерывность бизнеса и передачу знаний.</li>
             </ul>
-            <div class="exp-stack">Stack: <span>PHP, Yii2, MariaDB, RabbitMQ, Redis, Sphinx, Docker Swarm</span></div>
+            <div class="exp-stack">Стек: <span>PHP, Yii2, MariaDB, RabbitMQ, Redis, Sphinx, Docker Swarm</span></div>
         </div>
 
         <!-- 4: TorSystems -->
         <div class="exp-block">
             <div class="exp-header">
                 <div class="exp-company">TorSystems</div>
-                <div class="exp-dates">Jan 2014 — Sep 2014 · 9 mo</div>
+                <div class="exp-dates">Янв 2014 — Сен 2014 · 9 мес</div>
             </div>
             <div class="exp-role">Web Developer</div>
-            <div class="exp-desc">Server-side MMO game development &amp; RESTful API. Database design, microservices, async game event processing.</div>
-            <div class="exp-stack">Stack: <span>PHP, Yii2, MariaDB, RabbitMQ, Docker</span></div>
+            <div class="exp-desc">Разработка серверной части MMO-игры и RESTful API. Проектирование БД, микросервисы, асинхронная обработка игровых событий.</div>
+            <div class="exp-stack">Стек: <span>PHP, Yii2, MariaDB, RabbitMQ, Docker</span></div>
         </div>
 
         <!-- 5: Sirius -->
         <div class="exp-block">
             <div class="exp-header">
-                <div class="exp-company">OOO Sirius</div>
-                <div class="exp-dates">Oct 2011 — Dec 2013 · 2 yr 3 mo</div>
+                <div class="exp-company">ООО «Сириус»</div>
+                <div class="exp-dates">Окт 2011 — Дек 2013 · 2 года 3 мес</div>
             </div>
             <div class="exp-role">Full-stack Developer</div>
-            <div class="exp-desc">Full-stack web app development, business logic, payment system integrations.</div>
-            <div class="exp-stack">Stack: <span>PHP, MySQL, MongoDB, Symfony</span></div>
+            <div class="exp-desc">Full-stack разработка веб-приложений, бизнес-логика, интеграции с платёжными системами.</div>
+            <div class="exp-stack">Стек: <span>PHP, MySQL, MongoDB, Symfony</span></div>
         </div>
 
         <!-- 6: Vianor -->
         <div class="exp-block">
             <div class="exp-header">
-                <div class="exp-company">VIANOR Tire Center</div>
-                <div class="exp-dates">Mar 2010 — May 2011 · 1 yr 3 mo</div>
+                <div class="exp-company">Шинный центр VIANOR</div>
+                <div class="exp-dates">Мар 2010 — Май 2011 · 1 год 3 мес</div>
             </div>
             <div class="exp-role">PHP Developer</div>
-            <div class="exp-desc">E-commerce: product catalog, shopping cart, customer portal, and info kiosk software.</div>
-            <div class="exp-stack">Stack: <span>PHP, MySQL</span></div>
+            <div class="exp-desc">E-commerce: каталог товаров, корзина, личный кабинет, ПО для информационных киосков.</div>
+            <div class="exp-stack">Стек: <span>PHP, MySQL</span></div>
         </div>
 
     </div>
 
-    <!-- ── Key Competencies ────────────────────────────────── -->
+    <!-- ── Ключевые компетенции ─────────────────────────────── -->
     <div class="section">
-        <div class="section-title">Key Competencies</div>
+        <div class="section-title">Ключевые компетенции</div>
         <div class="comp-grid">
             <div class="comp-item">
                 <span class="comp-label">Go / Golang</span>
@@ -588,7 +486,7 @@
                 </div>
             </div>
             <div class="comp-item">
-                <span class="comp-label">System Architecture</span>
+                <span class="comp-label">Системная архитектура</span>
                 <div class="comp-bar">
                     <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
                     <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
@@ -596,7 +494,7 @@
                 </div>
             </div>
             <div class="comp-item">
-                <span class="comp-label">Linux / Infrastructure</span>
+                <span class="comp-label">Linux / Инфраструктура</span>
                 <div class="comp-bar">
                     <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
                     <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
@@ -611,7 +509,7 @@
                 </div>
             </div>
             <div class="comp-item">
-                <span class="comp-label">AI / LLM Integration</span>
+                <span class="comp-label">AI / LLM интеграция</span>
                 <div class="comp-bar">
                     <span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span><span class="filled"></span>
                     <span class="filled"></span><span class="filled"></span>
@@ -637,41 +535,41 @@
         </div>
     </div>
 
-    <!-- ── Education ───────────────────────────────────────── -->
+    <!-- ── Образование ──────────────────────────────────────── -->
     <div class="section">
-        <div class="section-title">Education</div>
+        <div class="section-title">Образование</div>
 
         <div class="edu-block">
             <div class="edu-year">2007</div>
-            <div class="edu-name">Novosibirsk State Technical University (NSTU)</div>
-            <div class="edu-detail">Faculty of Automation and Computer Engineering</div>
+            <div class="edu-name">Новосибирский государственный технический университет (НГТУ)</div>
+            <div class="edu-detail">Факультет автоматики и вычислительной техники</div>
         </div>
 
         <div class="edu-block">
             <div class="edu-year">2007</div>
-            <div class="edu-name">Lingua Language Center</div>
-            <div class="edu-detail">Translator in the field of professional communication</div>
+            <div class="edu-name">Языковой центр «Лингва»</div>
+            <div class="edu-detail">Переводчик в сфере профессиональной коммуникации</div>
         </div>
     </div>
 
     <!-- ── Terminal Easter Egg ─────────────────────────────── -->
     <div class="terminal-status">
         <div class="status-line">$ system-check --target=candidate --verbose</div>
-        <div>[ <span style="color: var(--green-dim);">OK</span> ] System Analysis: <span style="color: var(--green);">COMPLETED</span></div>
-        <div>[ <span style="color: var(--green-dim);">OK</span> ] Skill Verification: <span style="color: var(--green);">PASSED</span></div>
-        <div>[ <span style="color: var(--green-dim);">OK</span> ] Culture Fit: <span style="color: var(--yellow);">ZERO_BULLSHIT_COMPATIBLE</span></div>
-        <div>[ <span style="color: var(--green-dim);">OK</span> ] Availability: <span style="color: var(--green);">READY</span></div>
+        <div>[ <span style="color: var(--green-dim);">OK</span> ] Анализ системы: <span style="color: var(--green);">ЗАВЕРШЁН</span></div>
+        <div>[ <span style="color: var(--green-dim);">OK</span> ] Верификация навыков: <span style="color: var(--green);">ПРОЙДЕНА</span></div>
+        <div>[ <span style="color: var(--green-dim);">OK</span> ] Совместимость: <span style="color: var(--yellow);">ZERO_BULLSHIT_COMPATIBLE</span></div>
+        <div>[ <span style="color: var(--green-dim);">OK</span> ] Доступность: <span style="color: var(--green);">ГОТОВ</span></div>
     </div>
 
     <!-- ── Footer ──────────────────────────────────────────── -->
     <div class="footer">
-        Generated by <a href="https://korolev.tech">korolev.tech</a> · Last updated: March 2026
+        Сгенерировано на <a href="https://korolev.tech">korolev.tech</a> · Обновлено: Март 2026
     </div>
 
 </div>
 
 <!-- Print button (hidden when printing) -->
-<button class="print-btn no-print" onclick="window.print()">⎙ Save as PDF</button>
+<button class="print-btn no-print" onclick="window.print()">⎙ Сохранить в PDF</button>
 
 </body>
 </html>
