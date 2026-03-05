@@ -167,23 +167,6 @@ const FILESYSTEM = {
 
 // ── ASCII-баннер (wrench + KOROLEV.TECH) ──────────────────
 
-const CHIP_ART = `<span class="ascii-art"><span class="output-highlight">            ○     ○
-            │     │
-     ○──────┤     ├──────○
-            │     │
-     ○────┬─┤     ├─┬────○
-          │ │     │ │
-     ○──┬─┘ ├─────┤ └─┬──○
-        │   │ <span class="output-cyan">┌─┐</span> │   │
-        ○   │ <span class="output-cyan">│▪│</span> │   ○
-            │ <span class="output-cyan">└─┘</span> │
-     ○──┴─┐ ├─────┤ ┌─┴──○
-          │ │     │ │
-     ○────┴─┤     ├─┴────○
-            │     │
-     ○──────┤     ├──────○
-            │     │
-            ○     ○</span></span>`;
 
 const BANNER = `<span class="ascii-art">
   ██╗  ██╗ ██████╗ ██████╗  ██████╗ ██╗     ███████╗██╗   ██╗
@@ -559,16 +542,7 @@ async function boot() {
   scrollToBottom();
   await delay(200);
 
-  // ── Phase 3: ASCII chip icon ─────────────────────────────
-  const wrenchLines = CHIP_ART.split('\n');
-  for (const line of wrenchLines) {
-    appendOutput(line);
-    scrollToBottom();
-    await delay(25);
-  }
-  await delay(100);
-
-  // ── Phase 4: KOROLEV.TECH banner ─────────────────────────
+  // ── Phase 3: KOROLEV.TECH banner ─────────────────────────
   const bannerLines = BANNER.split('\n');
   for (const line of bannerLines) {
     appendOutput(line);
@@ -577,7 +551,7 @@ async function boot() {
   }
   await delay(100);
 
-  // ── Phase 5: Welcome ─────────────────────────────────────
+  // ── Phase 4: Welcome ─────────────────────────────────────
   for (const line of WELCOME_LINES) {
     appendOutput(line);
     scrollToBottom();
