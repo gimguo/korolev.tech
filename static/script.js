@@ -479,7 +479,7 @@ if (window.visualViewport) {
 // ── Boot Helpers ────────────────────────────────────────────
 
 function ok(text) {
-  return `<span class="output-info">[</span> <span class="boot-ok">OK</span> <span class="output-info">]</span> <span class="output-text">${text}</span>`;
+  return `<span class="output-info">[ <span class="boot-ok">OK</span> ] ${text}</span>`;
 }
 
 function delay(ms) {
