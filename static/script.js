@@ -167,12 +167,15 @@ const FILESYSTEM = {
 
 // ── ASCII-баннер (wrench + KOROLEV.TECH) ──────────────────
 
-const WRENCH_ART = `<span class="ascii-art"><span class="output-highlight">
-       ╔══╗
-      ╔╝  ╚══════════╗
-      ║   ════════   ║
-      ╚╗  ╔══════════╝
-       ╚══╝</span></span>`;
+const WRENCH_ART = `<span class="ascii-art"><span class="output-highlight">        ┌───┐
+        │ ○ │
+       ─┘   └─
+        │   │
+        │   │
+        │   │
+       ─┐   ┌─
+        │ ○ │
+        └───┘</span></span>`;
 
 const BANNER = `<span class="ascii-art">
   ██╗  ██╗ ██████╗ ██████╗  ██████╗ ██╗     ███████╗██╗   ██╗
@@ -535,12 +538,7 @@ async function boot() {
   // Insert photo element
   const photoWrap = document.createElement('div');
   photoWrap.className = 'boot-photo-frame';
-  photoWrap.innerHTML = `
-    <div class="boot-photo-inner">
-      <img src="/img/portrait.png?v=6" alt="AK" class="boot-photo-img">
-      <div class="boot-scanlines"></div>
-    </div>
-  `;
+  photoWrap.innerHTML = '<div class="boot-photo-inner"><img src="/img/portrait.png?v=10" alt="AK" class="boot-photo-img"><div class="boot-scanlines"></div></div>';
   appendElement(photoWrap);
   scrollToBottom();
   await delay(400);

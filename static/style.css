@@ -142,9 +142,11 @@ html, body {
 .boot-photo-frame {
     display: flex;
     justify-content: center;
-    width: 38ch;  /* match ASCII frame width (2 spaces + 36 chars) */
+    width: 38ch;  /* match ASCII frame width */
     padding: 0;
     margin: 0;
+    line-height: 0;        /* kill pre-wrap spacing */
+    white-space: normal;   /* override pre-wrap */
 }
 
 .boot-photo-inner {
@@ -157,16 +159,18 @@ html, body {
         0 0 12px rgba(0, 255, 65, 0.15),
         inset 0 0 15px rgba(0, 255, 65, 0.03);
     background: #000;
+    line-height: 0;
 }
 
 .boot-photo-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 35%;
+    object-position: center 30%;
     display: block;
     margin: 0;
     padding: 0;
+    vertical-align: top;
     filter:
         grayscale(1)
         brightness(0.85)
