@@ -132,31 +132,47 @@ html, body {
     text-align: center;
 }
 
-/* ── CRT Photo (scrollable splash) ───────────────────────── */
-#crt-photo {
+/* ── Boot [OK] label ──────────────────────────────────────── */
+.boot-ok {
+    color: var(--green);
+    font-weight: 700;
+}
+
+/* ── Boot Photo Frame (inline in boot output) ────────────── */
+.boot-photo-frame {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0;
+}
+
+.boot-photo-inner {
     position: relative;
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 16px;
-    border-radius: 8px;
+    width: 120px;
+    height: 120px;
     overflow: hidden;
     border: 1px solid var(--green-dark);
     box-shadow:
-        0 0 15px rgba(0, 255, 65, 0.12),
-        0 0 30px rgba(0, 255, 65, 0.04);
-    flex-shrink: 0;
+        0 0 12px rgba(0, 255, 65, 0.15),
+        inset 0 0 15px rgba(0, 255, 65, 0.03);
+    background: #000;
 }
 
-#crt-img {
+.boot-photo-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    filter: grayscale(15%) contrast(1.05) brightness(0.95);
+    filter:
+        grayscale(1)
+        brightness(0.85)
+        contrast(1.4)
+        sepia(0.4)
+        hue-rotate(80deg)
+        saturate(2.5);
 }
 
-/* CRT horizontal scanlines */
-.crt-scanlines {
+/* Scanlines on photo */
+.boot-scanlines {
     position: absolute;
     top: 0;
     left: 0;
@@ -165,35 +181,18 @@ html, body {
     background: repeating-linear-gradient(
         to bottom,
         transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.12) 2px,
-        rgba(0, 0, 0, 0.12) 4px
+        transparent 1px,
+        rgba(0, 0, 0, 0.2) 1px,
+        rgba(0, 0, 0, 0.2) 3px
     );
     pointer-events: none;
     z-index: 2;
 }
 
-/* CRT edge vignette */
-.crt-vignette {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        ellipse at center,
-        transparent 60%,
-        rgba(0, 0, 0, 0.4) 100%
-    );
-    pointer-events: none;
-    z-index: 3;
-}
-
 @media (max-width: 600px) {
-    #crt-photo {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 10px;
+    .boot-photo-inner {
+        width: 90px;
+        height: 90px;
     }
 }
 

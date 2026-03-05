@@ -165,10 +165,19 @@ const FILESYSTEM = {
   ],
 };
 
-// ── ASCII-баннер ───────────────────────────────────────────
+// ── ASCII-баннер (wrench + KOROLEV.TECH) ──────────────────
+
+const WRENCH_ART = `<span class="ascii-art"><span class="output-highlight">
+      ╔═══╗
+      ║   ╠════╗
+      ╚═╦═╝    ║
+        ║      ║
+        ║      ║
+      ╔═╩═╗    ║
+      ║   ╠════╝
+      ╚═══╝</span></span>`;
 
 const BANNER = `<span class="ascii-art">
-  <span class="output-highlight">🔧</span>
   ██╗  ██╗ ██████╗ ██████╗  ██████╗ ██╗     ███████╗██╗   ██╗
   ██║ ██╔╝██╔═══██╗██╔══██╗██╔═══██╗██║     ██╔════╝██║   ██║
   █████╔╝ ██║   ██║██████╔╝██║   ██║██║     █████╗  ██║   ██║
@@ -179,7 +188,6 @@ const BANNER = `<span class="ascii-art">
 </span>`;
 
 const WELCOME_LINES = [
-  BANNER,
   '',
   '  <span class="output-info">Type <span class="output-cyan">help</span> to see available commands.</span>',
   '',
@@ -477,26 +485,104 @@ if (window.visualViewport) {
   });
 }
 
+// ── Boot Helpers ────────────────────────────────────────────
+
+function ok(text) {
+  return `<span class="output-info">[</span> <span class="boot-ok">OK</span> <span class="output-info">]</span> <span class="output-text">${text}</span>`;
+}
+
+function delay(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
 // ── Boot Sequence ──────────────────────────────────────────
 
-function boot() {
+async function boot() {
   initMatrix();
+  isTyping = true;
 
+  // ── Phase 1: Linux-style boot with [OK] ──────────────────
   const bootLines = [
-    '<span class="output-info">[    0.000000] korolev.tech kernel: booting...</span>',
-    '<span class="output-info">[    0.031337] Loading personality matrix...</span>',
-    '<span class="output-info">[    0.042000] Mounting /dev/skills...</span>',
-    '<span class="output-info">[    0.069000] Initializing project database...</span>',
-    '<span class="output-info">[    0.080085] Neural interface ready.</span>',
-    '<span class="output-info">[    0.100000] System online. Welcome.</span>',
+    '<span class="output-info">[    0.000000] korolev.tech kernel 6.1.337-amd64 booting...</span>',
+    '<span class="output-info">[    0.001024] DMI: korolev.tech/PRINCIPAL, BIOS v2026.03</span>',
+    '<span class="output-info">[    0.004096] Memory: 131072k/131072k available</span>',
+    '',
+    ok('Started systemd-journald.service — Journal Service'),
+    ok('Started systemd-udevd.service — Device Manager'),
+    ok('Mounted /dev/skills — Technical Skills Filesystem'),
+    ok('Mounted /dev/projects — Project Database'),
+    ok('Loaded personality-matrix.ko — Neural Interface Module'),
+    ok('Started sshd.service — OpenSSH Server'),
+    ok('Started docker.service — Container Runtime'),
+    ok('Started nginx.service — Reverse Proxy'),
+    ok('Started postgresql@15-main — Database Cluster'),
+    '',
+    ok('Reached target multi-user.target'),
+    ok('Loading framebuffer /dev/fb0...'),
     '',
   ];
 
-  typeLines(bootLines, () => {
-    typeLines(WELCOME_LINES, () => {
-      input.focus();
-    });
-  });
+  for (const line of bootLines) {
+    appendOutput(line);
+    scrollToBottom();
+    await delay(45 + Math.random() * 35);
+  }
+
+  // ── Phase 2: Photo with dot-matrix frame ─────────────────
+  appendOutput('<span class="output-info">  ┌──────────────────────────────────┐</span>');
+  appendOutput('<span class="output-info">  │ <span class="output-text">SCANNING BIOMETRIC DATA...</span>       │</span>');
+  appendOutput('<span class="output-info">  │                                  │</span>');
+  scrollToBottom();
+  await delay(200);
+
+  // Insert photo element
+  const photoWrap = document.createElement('div');
+  photoWrap.className = 'boot-photo-frame';
+  photoWrap.innerHTML = `
+    <div class="boot-photo-inner">
+      <img src="/img/portrait.png?v=6" alt="AK" class="boot-photo-img">
+      <div class="boot-scanlines"></div>
+    </div>
+  `;
+  appendElement(photoWrap);
+  scrollToBottom();
+  await delay(400);
+
+  appendOutput('<span class="output-info">  │                                  │</span>');
+  appendOutput('<span class="output-info">  │ <span class="boot-ok">IDENTIFIED</span> · <span class="output-cyan">Andrew Korolev</span>       │</span>');
+  appendOutput('<span class="output-info">  │ <span class="output-text">ACCESS LEVEL:</span> <span class="output-highlight">PRINCIPAL</span>          │</span>');
+  appendOutput('<span class="output-info">  └──────────────────────────────────┘</span>');
+  appendOutput('');
+  scrollToBottom();
+  await delay(200);
+
+  // ── Phase 3: ASCII wrench ────────────────────────────────
+  const wrenchLines = WRENCH_ART.split('\n');
+  for (const line of wrenchLines) {
+    appendOutput(line);
+    scrollToBottom();
+    await delay(25);
+  }
+  await delay(100);
+
+  // ── Phase 4: KOROLEV.TECH banner ─────────────────────────
+  const bannerLines = BANNER.split('\n');
+  for (const line of bannerLines) {
+    appendOutput(line);
+    scrollToBottom();
+    await delay(25);
+  }
+  await delay(100);
+
+  // ── Phase 5: Welcome ─────────────────────────────────────
+  for (const line of WELCOME_LINES) {
+    appendOutput(line);
+    scrollToBottom();
+    await delay(40);
+  }
+
+  isTyping = false;
+  input.focus();
 }
 
 document.addEventListener('DOMContentLoaded', boot);
