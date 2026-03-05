@@ -167,15 +167,23 @@ const FILESYSTEM = {
 
 // ── ASCII-баннер (wrench + KOROLEV.TECH) ──────────────────
 
-const WRENCH_ART = `<span class="ascii-art"><span class="output-highlight">        ┌───┐
-        │ ○ │
-       ─┘   └─
-        │   │
-        │   │
-        │   │
-       ─┐   ┌─
-        │ ○ │
-        └───┘</span></span>`;
+const CHIP_ART = `<span class="ascii-art"><span class="output-highlight">            ○     ○
+            │     │
+     ○──────┤     ├──────○
+            │     │
+     ○────┬─┤     ├─┬────○
+          │ │     │ │
+     ○──┬─┘ ├─────┤ └─┬──○
+        │   │ <span class="output-cyan">┌─┐</span> │   │
+        ○   │ <span class="output-cyan">│▪│</span> │   ○
+            │ <span class="output-cyan">└─┘</span> │
+     ○──┴─┐ ├─────┤ ┌─┴──○
+          │ │     │ │
+     ○────┴─┤     ├─┴────○
+            │     │
+     ○──────┤     ├──────○
+            │     │
+            ○     ○</span></span>`;
 
 const BANNER = `<span class="ascii-art">
   ██╗  ██╗ ██████╗ ██████╗  ██████╗ ██╗     ███████╗██╗   ██╗
@@ -551,8 +559,8 @@ async function boot() {
   scrollToBottom();
   await delay(200);
 
-  // ── Phase 3: ASCII wrench ────────────────────────────────
-  const wrenchLines = WRENCH_ART.split('\n');
+  // ── Phase 3: ASCII chip icon ─────────────────────────────
+  const wrenchLines = CHIP_ART.split('\n');
   for (const line of wrenchLines) {
     appendOutput(line);
     scrollToBottom();
