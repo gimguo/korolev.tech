@@ -1,0 +1,319 @@
+/* ═══════════════════════════════════════════════════════════
+   korolev.tech — Terminal Theme
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+    --bg:          #0a0a0a;
+    --terminal-bg: #0d1117;
+    --header-bg:   #161b22;
+    --green:       #00ff41;
+    --green-dim:   #00cc33;
+    --green-dark:  #004d00;
+    --cyan:        #00d4ff;
+    --yellow:      #ffd700;
+    --red:         #ff4444;
+    --white:       #c9d1d9;
+    --gray:        #484f58;
+    --font:        'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--green);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+/* ── Matrix Background ──────────────────────────────────── */
+#matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+/* ── Terminal Window ────────────────────────────────────── */
+#terminal {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    height: 90vh;
+    margin: 5vh auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+        0 0 40px rgba(0, 255, 65, 0.05),
+        0 16px 70px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Terminal Header (macOS style) ──────────────────────── */
+#terminal-header {
+    background: var(--header-bg);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #21262d;
+    flex-shrink: 0;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-buttons span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.btn-close    { background: #ff5f56; }
+.btn-minimize { background: #ffbd2e; }
+.btn-maximize { background: #27c93f; }
+
+.terminal-title {
+    color: var(--gray);
+    font-size: 12px;
+    flex: 1;
+    text-align: center;
+}
+
+/* ── Terminal Body ──────────────────────────────────────── */
+#terminal-body {
+    background: var(--terminal-bg);
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+#terminal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+#terminal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#terminal-body::-webkit-scrollbar-thumb {
+    background: var(--green-dark);
+    border-radius: 3px;
+}
+
+/* ── Output Area ────────────────────────────────────────── */
+#output {
+    flex: 1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#output .line {
+    margin-bottom: 2px;
+}
+
+.prompt-text {
+    color: var(--cyan);
+}
+
+.command-text {
+    color: var(--white);
+}
+
+.output-text {
+    color: var(--green);
+}
+
+.output-error {
+    color: var(--red);
+}
+
+.output-info {
+    color: var(--gray);
+}
+
+.output-highlight {
+    color: var(--yellow);
+}
+
+.output-cyan {
+    color: var(--cyan);
+}
+
+.output-bold {
+    font-weight: 700;
+    color: var(--green);
+}
+
+.output-link {
+    color: var(--cyan);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.output-link:hover {
+    color: var(--yellow);
+}
+
+/* ── ASCII art / banner ─────────────────────────────────── */
+.ascii-art {
+    color: var(--green);
+    line-height: 1.2;
+    font-size: 11px;
+}
+
+@media (max-width: 600px) {
+    .ascii-art {
+        font-size: 7px;
+    }
+}
+
+/* ── Whoami card with photo ─────────────────────────────── */
+.whoami-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 8px 0;
+    margin-left: 8px;
+}
+
+.whoami-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid var(--green-dark);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.15);
+    filter: grayscale(30%) contrast(1.1);
+    flex-shrink: 0;
+}
+
+.whoami-info {
+    line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+    .whoami-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .whoami-photo {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* ── Input Line ─────────────────────────────────────────── */
+#input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+#input-line .prompt {
+    color: var(--cyan);
+    white-space: nowrap;
+    user-select: none;
+}
+
+#command-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 14px;
+    flex: 1;
+    caret-color: transparent;
+}
+
+.cursor-blink {
+    color: var(--green);
+    animation: blink 1s step-end infinite;
+    user-select: none;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+/* ── Section separator ──────────────────────────────────── */
+.section-sep {
+    color: var(--green-dark);
+    margin: 4px 0;
+}
+
+/* ── Skills bar ─────────────────────────────────────────── */
+.skill-bar {
+    display: inline-block;
+}
+
+.skill-filled {
+    color: var(--green);
+}
+
+.skill-empty {
+    color: var(--green-dark);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+    #terminal {
+        margin: 0;
+        height: 100vh;
+        height: 100dvh;
+        max-width: 100%;
+        border: none;
+        border-radius: 0;
+    }
+
+    #terminal-header {
+        padding: 8px 12px;
+    }
+
+    #terminal-body {
+        padding: 12px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #input-line {
+        position: sticky;
+        bottom: 0;
+        background: var(--terminal-bg);
+        padding: 8px 0;
+        z-index: 2;
+    }
+
+    html, body {
+        font-size: 12px;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    #command-input {
+        font-size: 16px;
+    }
+}

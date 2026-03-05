@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Korolev — Principal Engineer</title>
+    <meta name="description" content="Andrew Korolev — Principal Engineer. Terminal-style portfolio.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- Matrix rain canvas -->
+    <canvas id="matrix-bg"></canvas>
+
+    <!-- Terminal window -->
+    <div id="terminal">
+        <div id="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">andrey@korolev.tech: ~</div>
+        </div>
+        <div id="terminal-body">
+            <div id="output"></div>
+            <div id="input-line">
+                <span class="prompt">visitor@korolev.tech:~$&nbsp;</span>
+                <input type="text" id="command-input" autofocus autocomplete="off" spellcheck="false">
+                <span class="cursor-blink">▌</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
