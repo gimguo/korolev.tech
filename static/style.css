@@ -79,6 +79,25 @@ html, body {
     100%  { opacity: 1; }
 }
 
+/* ── CRT Scanlines — whole screen overlay ────────────────── */
+#terminal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.06) 2px,
+        rgba(0, 0, 0, 0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
 /* ── Terminal Header (macOS style) ──────────────────────── */
 #terminal-header {
     background: var(--header-bg);
@@ -120,13 +139,19 @@ html, body {
 }
 
 /* ── Boot Photo Frame (inline in boot output) ────────────── */
-/* Photo line — sits directly in #output */
-.boot-photo-line {
+.boot-photo-frame {
     display: flex;
     justify-content: center;
-    padding: 10px 0;
-    white-space: normal;
-    line-height: normal;
+    width: 38ch;  /* match ASCII frame width */
+    padding: 0;
+    margin: 0;
+    line-height: 0;        /* kill pre-wrap spacing */
+    white-space: normal;   /* override pre-wrap */
+}
+
+/* Whole biometric scan block */
+.bio-block {
+    padding: 50px 0;
 }
 
 .boot-photo-inner {
@@ -214,15 +239,10 @@ html, body {
     white-space: pre-wrap;
     word-wrap: break-word;
     -webkit-user-select: text;
-    -moz-user-select: text;
     user-select: text;
     cursor: text;
-}
-
-#terminal-body {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    user-select: text;
+    position: relative;
+    z-index: 1;
 }
 
 #output .line {
