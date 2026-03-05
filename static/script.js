@@ -168,14 +168,11 @@ const FILESYSTEM = {
 // ── ASCII-баннер (wrench + KOROLEV.TECH) ──────────────────
 
 const WRENCH_ART = `<span class="ascii-art"><span class="output-highlight">
-      ╔═══╗
-      ║   ╠════╗
-      ╚═╦═╝    ║
-        ║      ║
-        ║      ║
-      ╔═╩═╗    ║
-      ║   ╠════╝
-      ╚═══╝</span></span>`;
+       ╔══╗
+      ╔╝  ╚══════════╗
+      ║   ════════   ║
+      ╚╗  ╔══════════╝
+       ╚══╝</span></span>`;
 
 const BANNER = `<span class="ascii-art">
   ██╗  ██╗ ██████╗ ██████╗  ██████╗ ██╗     ███████╗██╗   ██╗
