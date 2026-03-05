@@ -9,6 +9,7 @@
     --green:       #00ff41;
     --green-dim:   #00cc33;
     --green-dark:  #004d00;
+    --green-glow:  rgba(0, 255, 65, 0.15);
     --cyan:        #00d4ff;
     --yellow:      #ffd700;
     --red:         #ff4444;
@@ -97,6 +98,70 @@ html, body {
     text-align: center;
 }
 
+/* ── ID Strip (under header) ────────────────────────────── */
+#id-strip {
+    background: #0b0f14;
+    border-bottom: 1px solid #21262d;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+#id-photo-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--green-dark);
+    box-shadow: 0 0 12px var(--green-glow);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+#id-photo-wrap:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.35);
+}
+
+#id-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.05) brightness(0.95);
+    display: block;
+}
+
+#id-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.id-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--white);
+    letter-spacing: 0.5px;
+}
+
+.id-role {
+    font-size: 11px;
+    color: var(--cyan);
+}
+
+.id-status {
+    font-size: 10px;
+    color: var(--green);
+    animation: pulse-status 2s ease-in-out infinite;
+}
+
+@keyframes pulse-status {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+}
+
 /* ── Terminal Body ──────────────────────────────────────── */
 #terminal-body {
     background: var(--terminal-bg);
@@ -131,38 +196,14 @@ html, body {
     margin-bottom: 2px;
 }
 
-.prompt-text {
-    color: var(--cyan);
-}
-
-.command-text {
-    color: var(--white);
-}
-
-.output-text {
-    color: var(--green);
-}
-
-.output-error {
-    color: var(--red);
-}
-
-.output-info {
-    color: var(--gray);
-}
-
-.output-highlight {
-    color: var(--yellow);
-}
-
-.output-cyan {
-    color: var(--cyan);
-}
-
-.output-bold {
-    font-weight: 700;
-    color: var(--green);
-}
+.prompt-text { color: var(--cyan); }
+.command-text { color: var(--white); }
+.output-text { color: var(--green); }
+.output-error { color: var(--red); }
+.output-info { color: var(--gray); }
+.output-highlight { color: var(--yellow); }
+.output-cyan { color: var(--cyan); }
+.output-bold { font-weight: 700; color: var(--green); }
 
 .output-link {
     color: var(--cyan);
@@ -182,29 +223,50 @@ html, body {
 }
 
 @media (max-width: 600px) {
-    .ascii-art {
-        font-size: 7px;
-    }
+    .ascii-art { font-size: 7px; }
 }
 
-/* ── Whoami card with photo ─────────────────────────────── */
+/* ── Inline photo in terminal (whoami / photo) ──────────── */
+.term-photo {
+    display: inline-block;
+    border: 1px solid var(--green-dark);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 6px 0;
+    box-shadow: 0 0 15px var(--green-glow);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.term-photo:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.3);
+}
+
+.term-photo img {
+    display: block;
+    max-width: 280px;
+    height: auto;
+    filter: grayscale(20%) contrast(1.05) brightness(0.95);
+}
+
+.term-photo-label {
+    display: block;
+    font-size: 10px;
+    color: var(--gray);
+    text-align: center;
+    padding: 4px;
+    background: #0b0f14;
+    border-top: 1px solid #21262d;
+    letter-spacing: 0.5px;
+}
+
+/* ── Whoami card ────────────────────────────────────────── */
 .whoami-card {
     display: flex;
     align-items: flex-start;
     gap: 16px;
     padding: 8px 0;
     margin-left: 8px;
-}
-
-.whoami-photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 1px solid var(--green-dark);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.15);
-    filter: grayscale(30%) contrast(1.1);
-    flex-shrink: 0;
 }
 
 .whoami-info {
@@ -217,11 +279,7 @@ html, body {
         align-items: center;
         text-align: center;
     }
-
-    .whoami-photo {
-        width: 100px;
-        height: 100px;
-    }
+    .term-photo img { max-width: 200px; }
 }
 
 /* ── Input Line ─────────────────────────────────────────── */
@@ -260,23 +318,42 @@ html, body {
     50%      { opacity: 0; }
 }
 
-/* ── Section separator ──────────────────────────────────── */
-.section-sep {
-    color: var(--green-dark);
-    margin: 4px 0;
-}
-
 /* ── Skills bar ─────────────────────────────────────────── */
-.skill-bar {
-    display: inline-block;
+.skill-filled { color: var(--green); }
+.skill-empty  { color: var(--green-dark); }
+
+/* ── Lightbox ───────────────────────────────────────────── */
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
 }
 
-.skill-filled {
-    color: var(--green);
+#lightbox.active {
+    display: flex;
 }
 
-.skill-empty {
-    color: var(--green-dark);
+#lightbox-img {
+    max-width: 88vw;
+    max-height: 82vh;
+    border: 2px solid var(--green-dark);
+    border-radius: 8px;
+    box-shadow: 0 0 40px var(--green-glow), 0 0 80px rgba(0, 255, 65, 0.08);
+    filter: grayscale(10%) contrast(1.05);
+    object-fit: contain;
+}
+
+#lightbox-hint {
+    margin-top: 14px;
+    color: var(--gray);
+    font-size: 11px;
+    letter-spacing: 1px;
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
@@ -290,9 +367,11 @@ html, body {
         border-radius: 0;
     }
 
-    #terminal-header {
-        padding: 8px 12px;
-    }
+    #terminal-header { padding: 8px 12px; }
+
+    #id-strip { padding: 10px 12px; }
+    #id-photo-wrap { width: 44px; height: 44px; }
+    .id-name { font-size: 13px; }
 
     #terminal-body {
         padding: 12px;
@@ -313,7 +392,5 @@ html, body {
         -webkit-text-size-adjust: 100%;
     }
 
-    #command-input {
-        font-size: 16px;
-    }
+    #command-input { font-size: 16px; }
 }

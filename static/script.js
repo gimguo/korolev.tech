@@ -9,24 +9,35 @@
 
 const COMMANDS = {
 
-  whoami: () => [
-    '',
-    '<div class="whoami-card">' +
-      '<img src="/img/portrait.png" alt="Andrew Korolev" class="whoami-photo" onerror="this.style.display=\'none\'">' +
-      '<div class="whoami-info">' +
-        '<span class="output-bold">Andrew Korolev</span><br>' +
-        '<span class="output-cyan">Principal Engineer / System Architect</span><br>' +
-        '<br>' +
-        '🏠  Location:   Russia<br>' +
-        '💼  Focus:      Distributed Systems, DevOps, Product Engineering<br>' +
-        '🧠  Philosophy: "Build systems that outlive the team that built them."' +
-      '</div>' +
-    '</div>',
-    '',
-    '  15+ years of building, scaling, and unfucking production systems.',
-    '  From bare-metal to Kubernetes, from monoliths to microservices.',
-    '',
-  ],
+  whoami: () => {
+    const card = document.createElement('div');
+    card.className = 'whoami-card';
+
+    const photo = document.createElement('div');
+    photo.className = 'term-photo';
+    photo.onclick = openLightbox;
+    photo.innerHTML = '<img src="/img/portrait.png" alt="Andrew Korolev"><span class="term-photo-label">[ click to enlarge ]</span>';
+
+    const info = document.createElement('div');
+    info.className = 'whoami-info';
+    info.innerHTML =
+      '<span class="output-bold">Andrew Korolev</span><br>' +
+      '<span class="output-cyan">Principal Engineer / System Architect</span><br>' +
+      '<br>' +
+      '🏠  Location:   Russia<br>' +
+      '💼  Focus:      Distributed Systems, DevOps, Product Engineering<br>' +
+      '🧠  Philosophy: "Build systems that outlive the team that built them."';
+
+    card.appendChild(photo);
+    card.appendChild(info);
+
+    return { element: card, after: [
+      '',
+      '  15+ years of building, scaling, and unfucking production systems.',
+      '  From bare-metal to Kubernetes, from monoliths to microservices.',
+      '',
+    ]};
+  },
 
   skills: () => {
     const skills = [
@@ -99,14 +110,25 @@ const COMMANDS = {
     ];
   },
 
+  photo: () => {
+    openLightbox();
+    return [
+      '',
+      '  <span class="output-info">📷 Opening portrait in fullscreen...</span>',
+      '  <span class="output-info">   Click anywhere or press ESC to close.</span>',
+      '',
+    ];
+  },
+
   help: () => [
     '',
     '<span class="output-bold">  Available commands:</span>',
     '',
-    '  <span class="output-cyan">whoami</span>       — About me',
+    '  <span class="output-cyan">whoami</span>       — About me (with photo)',
     '  <span class="output-cyan">skills</span>       — Technical skills',
     '  <span class="output-cyan">projects</span>     — Notable projects',
     '  <span class="output-cyan">contact</span>      — Contact information',
+    '  <span class="output-cyan">photo</span>        — View portrait fullscreen',
     '  <span class="output-cyan">resume</span>       — Open PDF resume',
     '  <span class="output-cyan">clear</span>        — Clear terminal',
     '  <span class="output-cyan">help</span>         — Show this message',
@@ -117,7 +139,7 @@ const COMMANDS = {
   ],
 };
 
-// ── Пасхалки: cat / ls / cd и файловая система ─────────────
+// ── Пасхалки: файловая система ─────────────────────────────
 
 const FILESYSTEM = {
   '/etc/status': [
@@ -202,15 +224,31 @@ const WELCOME_LINES = [
 
 // ── DOM ────────────────────────────────────────────────────
 
-const output      = document.getElementById('output');
-const input       = document.getElementById('command-input');
-const termBody    = document.getElementById('terminal-body');
+const output   = document.getElementById('output');
+const input    = document.getElementById('command-input');
+const termBody = document.getElementById('terminal-body');
 
 // ── State ──────────────────────────────────────────────────
 
 let commandHistory = [];
 let historyIndex   = -1;
 let isTyping       = false;
+
+// ── Lightbox ───────────────────────────────────────────────
+
+function openLightbox() {
+  document.getElementById('lightbox').classList.add('active');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+document.getElementById('lightbox').addEventListener('click', closeLightbox);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+// ID photo click → lightbox
+document.getElementById('id-photo-wrap').addEventListener('click', openLightbox);
 
 // ── Matrix Rain Background ─────────────────────────────────
 
@@ -230,27 +268,19 @@ function initMatrix() {
   function draw() {
     ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     ctx.fillStyle = '#00ff41';
     ctx.font = fontSize + 'px monospace';
 
     for (let i = 0; i < drops.length; i++) {
       const text = chars[Math.floor(Math.random() * chars.length)];
       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
       drops[i]++;
     }
   }
 
   setInterval(draw, 50);
-
-  window.addEventListener('resize', () => {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+  window.addEventListener('resize', () => { canvas.width = innerWidth; canvas.height = innerHeight; });
 }
 
 // ── Typing Effect ──────────────────────────────────────────
@@ -258,22 +288,13 @@ function initMatrix() {
 function typeLines(lines, callback) {
   isTyping = true;
   let i = 0;
-
   function nextLine() {
-    if (i >= lines.length) {
-      isTyping = false;
-      if (callback) callback();
-      return;
-    }
-
-    const line = lines[i];
-    appendOutput(line);
+    if (i >= lines.length) { isTyping = false; if (callback) callback(); return; }
+    appendOutput(lines[i]);
     scrollToBottom();
     i++;
-
     setTimeout(nextLine, 40 + Math.random() * 30);
   }
-
   nextLine();
 }
 
@@ -283,6 +304,13 @@ function appendOutput(html) {
   const div = document.createElement('div');
   div.className = 'line';
   div.innerHTML = html;
+  output.appendChild(div);
+}
+
+function appendElement(el) {
+  const div = document.createElement('div');
+  div.className = 'line';
+  div.appendChild(el);
   output.appendChild(div);
 }
 
@@ -314,12 +342,11 @@ function processCommand(raw) {
   const parts = trimmed.split(/\s+/);
   const cmd   = parts[0].toLowerCase();
 
-  // Сохраняем в историю
   commandHistory.unshift(trimmed);
   if (commandHistory.length > 50) commandHistory.pop();
   historyIndex = -1;
 
-  // clear — очищает + показывает баннер
+  // clear
   if (cmd === 'clear') {
     output.innerHTML = '';
     WELCOME_LINES.forEach(line => appendOutput(line));
@@ -327,7 +354,7 @@ function processCommand(raw) {
     return;
   }
 
-  // cat — пасхалки с файловой системой
+  // cat
   if (cmd === 'cat') {
     const path = parts.slice(1).join(' ').trim();
     if (!path) {
@@ -344,31 +371,17 @@ function processCommand(raw) {
     return;
   }
 
-  // ls — показывает «файлы»
+  // ls
   if (cmd === 'ls') {
     const target = parts.slice(1).join(' ').trim() || '/';
     const dirs = {
-      '/': [
-        '<span class="output-cyan">bin/</span>   <span class="output-cyan">dev/</span>   <span class="output-cyan">etc/</span>   <span class="output-cyan">home/</span>   <span class="output-cyan">proc/</span>   <span class="output-cyan">var/</span>',
-      ],
-      '/etc': [
-        '<span class="output-text">motd</span>    <span class="output-text">status</span>',
-      ],
-      '/home': [
-        '<span class="output-text">repair</span>',
-      ],
-      '/proc': [
-        '<span class="output-text">coffee</span>',
-      ],
-      '/var': [
-        '<span class="output-cyan">log/</span>',
-      ],
-      '/var/log': [
-        '<span class="output-text">bugs</span>',
-      ],
-      '/dev': [
-        '<span class="output-text">null</span>',
-      ],
+      '/':        ['<span class="output-cyan">bin/</span>   <span class="output-cyan">dev/</span>   <span class="output-cyan">etc/</span>   <span class="output-cyan">home/</span>   <span class="output-cyan">proc/</span>   <span class="output-cyan">var/</span>'],
+      '/etc':     ['<span class="output-text">motd</span>    <span class="output-text">status</span>'],
+      '/home':    ['<span class="output-text">repair</span>'],
+      '/proc':    ['<span class="output-text">coffee</span>'],
+      '/var':     ['<span class="output-cyan">log/</span>'],
+      '/var/log': ['<span class="output-text">bugs</span>'],
+      '/dev':     ['<span class="output-text">null</span>'],
     };
     const normalized = target.replace(/\/+$/, '') || '/';
     if (dirs[normalized]) {
@@ -382,7 +395,7 @@ function processCommand(raw) {
     return;
   }
 
-  // sudo — пасхалка
+  // sudo
   if (cmd === 'sudo') {
     appendOutput('');
     appendOutput('<span class="output-error">  [sudo] password for visitor: </span>');
@@ -392,7 +405,7 @@ function processCommand(raw) {
     return;
   }
 
-  // rm -rf — пасхалка
+  // rm
   if (cmd === 'rm') {
     appendOutput('');
     appendOutput('<span class="output-error">  ⚠ Permission denied. You thought I\'d let you do that?</span>');
@@ -402,29 +415,36 @@ function processCommand(raw) {
     return;
   }
 
-  // Локальные команды
+  // Registered commands
   if (COMMANDS[cmd]) {
     const result = COMMANDS[cmd]();
+
+    // Handle element + after-text (whoami)
+    if (result && result.element) {
+      appendOutput('');
+      appendElement(result.element);
+      if (result.after) result.after.forEach(line => appendOutput(line));
+      scrollToBottom();
+      return;
+    }
+
+    // Handle string arrays
     const lines = Array.isArray(result) ? result : [result];
     lines.forEach(line => appendOutput(line));
     scrollToBottom();
     return;
   }
 
-  // Серверные команды (для будущего расширения)
+  // Server commands
   const serverCommands = ['ping', 'uptime', 'date'];
   if (serverCommands.includes(cmd)) {
     fetchServerCommand(cmd, parts.slice(1).join(' '));
     return;
   }
 
-  // Неизвестная команда
-  appendOutput(
-    `<span class="output-error">  bash: ${escapeHtml(cmd)}: command not found</span>`
-  );
-  appendOutput(
-    '<span class="output-info">  Type <span class="output-cyan">help</span> for available commands.</span>'
-  );
+  // Not found
+  appendOutput(`<span class="output-error">  bash: ${escapeHtml(cmd)}: command not found</span>`);
+  appendOutput('<span class="output-info">  Type <span class="output-cyan">help</span> for available commands.</span>');
   appendOutput('');
   scrollToBottom();
 }
@@ -442,9 +462,7 @@ async function fetchServerCommand(cmd, args) {
     const cls  = data.type === 'error' ? 'output-error' : 'output-text';
     appendOutput(`<span class="${cls}">  ${escapeHtml(data.output)}</span>`);
   } catch (err) {
-    appendOutput(
-      '<span class="output-error">  ⚠ Connection to server failed.</span>'
-    );
+    appendOutput('<span class="output-error">  ⚠ Connection to server failed.</span>');
   }
   appendOutput('');
   scrollToBottom();
@@ -453,10 +471,7 @@ async function fetchServerCommand(cmd, args) {
 // ── Input Handling ─────────────────────────────────────────
 
 input.addEventListener('keydown', (e) => {
-  if (isTyping) {
-    e.preventDefault();
-    return;
-  }
+  if (isTyping) { e.preventDefault(); return; }
 
   if (e.key === 'Enter') {
     const val = input.value;
@@ -465,7 +480,6 @@ input.addEventListener('keydown', (e) => {
     return;
   }
 
-  // History navigation
   if (e.key === 'ArrowUp') {
     e.preventDefault();
     if (historyIndex < commandHistory.length - 1) {
@@ -487,7 +501,6 @@ input.addEventListener('keydown', (e) => {
     return;
   }
 
-  // Tab completion
   if (e.key === 'Tab') {
     e.preventDefault();
     const partial = input.value.trim().toLowerCase();
@@ -498,26 +511,21 @@ input.addEventListener('keydown', (e) => {
       input.value = matches[0];
     } else if (matches.length > 1) {
       appendPromptAndCommand(partial);
-      appendOutput(
-        '<span class="output-info">  ' + matches.join('  ') + '</span>'
-      );
+      appendOutput('<span class="output-info">  ' + matches.join('  ') + '</span>');
       appendOutput('');
       scrollToBottom();
     }
   }
 });
 
-// Клик по terminal body фокусирует input
-document.getElementById('terminal-body').addEventListener('click', () => {
-  input.focus();
-});
+// Click → focus
+document.getElementById('terminal-body').addEventListener('click', () => input.focus());
 
-// ── Mobile: fix keyboard resize ────────────────────────────
+// ── Mobile fix ─────────────────────────────────────────────
 
 if (window.visualViewport) {
   window.visualViewport.addEventListener('resize', () => {
-    const terminal = document.getElementById('terminal');
-    terminal.style.height = window.visualViewport.height + 'px';
+    document.getElementById('terminal').style.height = window.visualViewport.height + 'px';
     scrollToBottom();
   });
 }
@@ -544,5 +552,4 @@ function boot() {
   });
 }
 
-// Запуск при загрузке
 document.addEventListener('DOMContentLoaded', boot);
