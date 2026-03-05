@@ -7,7 +7,7 @@
     <meta name="description" content="Andrew Korolev — Principal Engineer. Terminal-style portfolio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=15">
+    <link rel="stylesheet" href="/style.css?v=27">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
@@ -22,19 +22,23 @@
                 <span class="btn-minimize"></span>
                 <span class="btn-maximize"></span>
             </div>
-            <div class="terminal-title">andrey@korolev.tech: ~</div>
+            <div class="terminal-title" id="terminal-title-text"></div>
         </div>
 
         <div id="terminal-body">
             <div id="output"></div>
             <div id="input-line">
-                <span class="prompt">visitor@korolev.tech:~$&nbsp;</span>
+                <span class="prompt" id="prompt-text"></span>
                 <input type="text" id="command-input" autofocus autocomplete="off" spellcheck="false">
                 <span class="cursor-blink">▌</span>
             </div>
         </div>
     </div>
 
-    <script src="/script.js?v=16"></script>
+    <script>
+    document.getElementById('terminal-title-text').textContent = 'andrey' + String.fromCharCode(64) + 'korolev.tech: ~';
+    document.getElementById('prompt-text').innerHTML = 'visitor' + String.fromCharCode(64) + 'korolev.tech:~$&nbsp;';
+    </script>
+    <script src="/script.js?v=27"></script>
 </body>
 </html>

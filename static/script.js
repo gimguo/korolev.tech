@@ -14,9 +14,9 @@ const COMMANDS = {
     '<span class="output-bold">  Andrew Korolev</span>',
     '<span class="output-cyan">  Staff Engineer / Principal Architect</span>',
     '',
-    '  🏠  Location:    Russia',
-    '  💼  Focus:       Distributed Systems, DevOps, Product Engineering',
-    '  🧠  Philosophy:  "Build systems that outlive the team that built them."',
+    '  Location:    Russia',
+    '  Focus:       Distributed Systems, DevOps, Product Engineering',
+    '  Philosophy:  "Build systems that outlive the team that built them."',
     '',
     '  18+ years of building, scaling, and unfucking production systems.',
     '  From bare-metal to Kubernetes, from monoliths to microservices.',
@@ -39,7 +39,7 @@ const COMMANDS = {
       ['CI/CD Pipelines',  8],
       ['AI/ML Integration',6],
     ];
-    const lines = ['', '<span class="output-bold">  ⚡ Technical Skills</span>', ''];
+    const lines = ['', '<span class="output-bold">  Technical Skills</span>', ''];
     skills.forEach(([name, level]) => {
       const filled = '█'.repeat(level);
       const empty  = '░'.repeat(10 - level);
@@ -57,13 +57,12 @@ const COMMANDS = {
 
   contact: () => [
     '',
-    '<span class="output-bold">  📬 Get in Touch</span>',
+    '<span class="output-bold">  Get in Touch</span>',
     '',
-    '  ✉️   Email:     <a class="output-link" href="mailto:andrew@korolev.tech">andrew@korolev.tech</a>',
-    '  🔗  GitHub:    <a class="output-link" href="https://github.com/akorolev" target="_blank">github.com/akorolev</a>',
-    '  💬  Telegram:  <a class="output-link" href="https://t.me/gimguo" target="_blank">@gimguo</a>',
-    '  📄  CV:        <a class="output-link" href="/cv.html" target="_blank">korolev.tech/cv</a>',
-    '  📝  Resume:    <a class="output-link" href="/resume.html" target="_blank">korolev.tech/resume (RU)</a>',
+    '  Email:     <a class="output-link" href="mailto:andrew' + String.fromCharCode(64) + 'korolev.tech">andrew' + String.fromCharCode(64) + 'korolev.tech</a>',
+    '  Telegram:  <a class="output-link" href="https://t.me/gimguo" target="_blank">' + String.fromCharCode(64) + 'gimguo</a>',
+    '  CV:        <a class="output-link" href="/cv.html" target="_blank">korolev.tech/cv</a>',
+    '  Resume:    <a class="output-link" href="/resume.html" target="_blank">korolev.tech/resume (RU)</a>',
     '',
     '  <span class="output-info">Open to interesting challenges and collaborations.</span>',
     '',
@@ -73,7 +72,7 @@ const COMMANDS = {
     window.open('/cv.html', '_blank');
     return [
       '',
-      '  <span class="output-info">📄 Opening CV (English) in a new tab...</span>',
+      '  <span class="output-info">Opening CV (English) in a new tab...</span>',
       '  <span class="output-info">   Use "Save as PDF" button or Ctrl+P to export.</span>',
       '',
     ];
@@ -83,7 +82,7 @@ const COMMANDS = {
     window.open('/resume.html', '_blank');
     return [
       '',
-      '  <span class="output-info">📄 Открываю резюме (Русский) в новой вкладке...</span>',
+      '  <span class="output-info">Opening resume (Russian) in a new tab...</span>',
       '  <span class="output-info">   Используйте кнопку «Сохранить в PDF» или Ctrl+P.</span>',
       '',
     ];
@@ -102,7 +101,7 @@ const COMMANDS = {
     '  <span class="output-cyan">help</span>         — Show this message',
     '',
     '  <span class="output-info">Hint: use ↑ / ↓ arrows for command history</span>',
-    '  <span class="output-info">Hint: try exploring the filesystem... 🐰</span>',
+    '  <span class="output-info">Hint: try exploring the filesystem...</span>',
     '',
   ],
 };
@@ -262,7 +261,7 @@ function appendElement(el) {
 
 function appendPromptAndCommand(cmd) {
   appendOutput(
-    '<span class="prompt-text">visitor@korolev.tech:~$</span> ' +
+    '<span class="prompt-text">visitor' + String.fromCharCode(64) + 'korolev.tech:~$</span> ' +
     '<span class="command-text">' + escapeHtml(cmd) + '</span>'
   );
 }
@@ -345,7 +344,7 @@ function processCommand(raw) {
   if (cmd === 'sudo') {
     appendOutput('');
     appendOutput('<span class="output-error">  [sudo] password for visitor: </span>');
-    appendOutput('<span class="output-error">  Nice try. This incident will be reported. 🚨</span>');
+    appendOutput('<span class="output-error">  Nice try. This incident will be reported.</span>');
     appendOutput('');
     scrollToBottom();
     return;
