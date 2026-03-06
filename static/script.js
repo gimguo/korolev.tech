@@ -193,7 +193,7 @@ const termBody = document.getElementById('terminal-body');
 
 // ── State ──────────────────────────────────────────────────
 
-let commandHistory = [];
+let commandHistory = ['help', 'contact', 'cv', 'resume', 'skills', 'whoami'];
 let historyIndex   = -1;
 let isTyping       = false;
 
