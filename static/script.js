@@ -413,6 +413,14 @@ async function fetchServerCommand(cmd, args) {
   scrollToBottom();
 }
 
+// ── Input Mirror (cursor follows text) ─────────────────────
+
+const mirror = document.getElementById('input-mirror');
+function syncMirror() {
+  mirror.textContent = input.value;
+}
+input.addEventListener('input', syncMirror);
+
 // ── Input Handling ─────────────────────────────────────────
 
 input.addEventListener('keydown', (e) => {
@@ -421,6 +429,7 @@ input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     const val = input.value;
     input.value = '';
+    syncMirror();
     processCommand(val);
     return;
   }
@@ -430,6 +439,7 @@ input.addEventListener('keydown', (e) => {
     if (historyIndex < commandHistory.length - 1) {
       historyIndex++;
       input.value = commandHistory[historyIndex];
+      syncMirror();
     }
     return;
   }
@@ -443,6 +453,7 @@ input.addEventListener('keydown', (e) => {
       historyIndex = -1;
       input.value = '';
     }
+    syncMirror();
     return;
   }
 
@@ -454,6 +465,7 @@ input.addEventListener('keydown', (e) => {
     const matches = allCmds.filter(c => c.startsWith(partial));
     if (matches.length === 1) {
       input.value = matches[0];
+      syncMirror();
     } else if (matches.length > 1) {
       appendPromptAndCommand(partial);
       appendOutput('<span class="output-info">  ' + matches.join('  ') + '</span>');
