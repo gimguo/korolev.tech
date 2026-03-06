@@ -41,7 +41,7 @@ const COMMANDS = {
       ['Sleeping in Prod', 2],
       ['Corporate Meetings',1],
       ['Crunch Master',     1],
-      ['Work-Life Balance', 4],
+      ['Work-Life Balance', 5],
     ];
     const lines = ['', '<span class="output-bold">  Technical Skills</span>', ''];
     skills.forEach(([name, level]) => {
