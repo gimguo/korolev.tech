@@ -7,24 +7,18 @@
     <meta name="description" content="Andrew Korolev — Principal Engineer. Terminal-style portfolio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=30">
+    <link rel="stylesheet" href="/style.css?v=31">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
     <!-- Matrix rain canvas -->
     <canvas id="matrix-bg"></canvas>
 
-    <!-- Terminal window -->
-    <div id="terminal">
-        <div id="terminal-header">
-            <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-            </div>
-            <div class="terminal-title" id="terminal-title-text"></div>
-        </div>
+    <!-- CRT scanlines overlay -->
+    <div id="crt-scanlines"></div>
 
+    <!-- Terminal — full screen -->
+    <div id="terminal">
         <div id="terminal-body">
             <div id="output"></div>
             <div id="input-line">
@@ -36,9 +30,8 @@
     </div>
 
     <script>
-    document.getElementById('terminal-title-text').textContent = 'andrey' + String.fromCharCode(64) + 'korolev.tech: ~';
     document.getElementById('prompt-text').innerHTML = 'visitor' + String.fromCharCode(64) + 'korolev.tech:~$&nbsp;';
     </script>
-    <script src="/script.js?v=27"></script>
+    <script src="/script.js?v=31"></script>
 </body>
 </html>

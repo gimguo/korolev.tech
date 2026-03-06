@@ -1,11 +1,10 @@
 /* ═══════════════════════════════════════════════════════════
-   korolev.tech — Terminal Theme
+   korolev.tech — Terminal Theme (Fullscreen CRT)
    ═══════════════════════════════════════════════════════════ */
 
 :root {
     --bg:          #0a0a0a;
-    --terminal-bg: #0d1117;
-    --header-bg:   #161b22;
+    --terminal-bg: #0a0a0a;
     --green:       #00ff41;
     --green-dim:   #00cc33;
     --green-dark:  #004d00;
@@ -46,22 +45,33 @@ html, body {
     pointer-events: none;
 }
 
-/* ── Terminal Window ────────────────────────────────────── */
+/* ── CRT Scanlines — fullscreen overlay ──────────────────── */
+#crt-scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.06) 2px,
+        rgba(0, 0, 0, 0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ── Terminal — fullscreen ────────────────────────────────── */
 #terminal {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 900px;
-    height: 90vh;
-    margin: 5vh auto;
+    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow:
-        0 0 40px rgba(0, 255, 65, 0.05),
-        0 16px 70px rgba(0, 0, 0, 0.6);
     animation: crt-flicker 4s infinite;
 }
 
@@ -79,59 +89,6 @@ html, body {
     100%  { opacity: 1; }
 }
 
-/* ── CRT Scanlines — whole screen overlay ────────────────── */
-#terminal::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.06) 2px,
-        rgba(0, 0, 0, 0.06) 4px
-    );
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* ── Terminal Header (macOS style) ──────────────────────── */
-#terminal-header {
-    background: var(--header-bg);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid #21262d;
-    flex-shrink: 0;
-}
-
-.terminal-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.terminal-buttons span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.btn-close    { background: #ff5f56; }
-.btn-minimize { background: #ffbd2e; }
-.btn-maximize { background: #27c93f; }
-
-.terminal-title {
-    color: var(--gray);
-    font-size: 12px;
-    flex: 1;
-    text-align: center;
-}
-
 /* ── Boot [OK] label ──────────────────────────────────────── */
 .boot-ok {
     color: var(--green);
@@ -142,16 +99,15 @@ html, body {
 .boot-photo-frame {
     display: flex;
     justify-content: center;
-    width: 38ch;  /* match ASCII frame width */
+    width: 38ch;
     padding: 0;
     margin: 0;
-    line-height: 0;        /* kill pre-wrap spacing */
-    white-space: normal;   /* override pre-wrap */
+    line-height: 0;
+    white-space: normal;
 }
 
-/* Whole biometric scan block */
 .bio-block {
-    padding: 50px 0;
+    padding: 40px 0;
 }
 
 .boot-photo-inner {
@@ -212,16 +168,18 @@ html, body {
 
 /* ── Terminal Body ──────────────────────────────────────── */
 #terminal-body {
-    background: var(--terminal-bg);
+    background: transparent;
     flex: 1;
     overflow-y: auto;
-    padding: 16px;
+    padding: 20px 24px;
     display: flex;
     flex-direction: column;
+    -webkit-user-select: text;
+    user-select: text;
 }
 
 #terminal-body::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
 }
 
 #terminal-body::-webkit-scrollbar-track {
@@ -230,7 +188,7 @@ html, body {
 
 #terminal-body::-webkit-scrollbar-thumb {
     background: var(--green-dark);
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 /* ── Output Area ────────────────────────────────────────── */
@@ -321,27 +279,15 @@ html, body {
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 768px) {
-    #terminal {
-        margin: 0;
-        height: 100vh;
-        height: 100dvh;
-        max-width: 100%;
-        border: none;
-        border-radius: 0;
-    }
-
-    #terminal-header { padding: 8px 12px; }
-
     #terminal-body {
         padding: 12px;
-        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
 
     #input-line {
         position: sticky;
         bottom: 0;
-        background: var(--terminal-bg);
+        background: var(--bg);
         padding: 8px 0;
         z-index: 2;
     }
