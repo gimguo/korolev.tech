@@ -28,8 +28,8 @@ const COMMANDS = {
 
   skills: () => {
     const skills = [
-      ['Go / Golang',      9],
       ['PHP / Yii2',       9],
+      ['Go / Golang',      9],
       ['Python',           7],
       ['JavaScript',       8],
       ['PostgreSQL',       9],
@@ -37,7 +37,9 @@ const COMMANDS = {
       ['Linux / Infra',    10],
       ['System Design',    9],
       ['CI/CD Pipelines',  8],
-      ['AI/ML Integration',6],
+      ['AI/ML Integration',7],
+      ['Sleeping in Prod', 2],
+      ['Corporate Meetings',1],
     ];
     const lines = ['', '<span class="output-bold">  Technical Skills</span>', ''];
     skills.forEach(([name, level]) => {
