@@ -38,6 +38,8 @@ const COMMANDS = {
       ['System Design',    9],
       ['CI/CD Pipelines',  8],
       ['AI/ML Integration',7],
+      ['Web3 / Blockchain',8],
+      ['RabbitMQ / Messaging',9],
       ['Corporate Meetings',1],
       ['Work-Life Balance', 5],
     ];
