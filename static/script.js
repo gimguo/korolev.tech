@@ -61,6 +61,19 @@ const COMMANDS = {
     return lines;
   },
 
+  projects: () => [
+    '',
+    '<span class="output-bold">  Projects</span>',
+    '',
+    '  <span class="output-cyan">E-commerce Platform</span>     Headless multi-tenant SaaS (PIM/MDM, AI, ERP)',
+    '  <span class="output-cyan">Price Aggregator</span>        Data parsing & aggregation engine, 2M+ variants',
+    '  <span class="output-cyan">FinTech Platform</span>        Crypto-processing & cross-exchange arbitrage ($20M+ BTC)',
+    '  <span class="output-cyan">Infrastructure</span>          Automated Proxmox/KVM Cluster via Terraform/Ansible (IaC)',
+    '',
+    '  <span class="output-info">Type <span class="output-cyan">cv</span> or <span class="output-cyan">resume</span> for full details.</span>',
+    '',
+  ],
+
   contact: () => [
     '',
     '<span class="output-bold">  Get in Touch</span>',
@@ -100,6 +113,7 @@ const COMMANDS = {
     '',
     '  <span class="output-cyan">whoami</span>       — About me',
     '  <span class="output-cyan">skills</span>       — Technical skills',
+    '  <span class="output-cyan">projects</span>     — Key projects',
     '  <span class="output-cyan">contact</span>      — Contact information',
     '  <span class="output-cyan">cv</span>           — Open CV (English)',
     '  <span class="output-cyan">resume</span>       — Резюме (Русский)',
@@ -197,7 +211,7 @@ const termBody = document.getElementById('terminal-body');
 
 // ── State ──────────────────────────────────────────────────
 
-let commandHistory = ['help', 'contact', 'cv', 'resume', 'skills', 'whoami'];
+let commandHistory = ['help', 'contact', 'cv', 'resume', 'projects', 'skills', 'whoami'];
 let historyIndex   = -1;
 let isTyping       = false;
 
