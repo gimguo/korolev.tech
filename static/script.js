@@ -68,6 +68,7 @@ const COMMANDS = {
     '  <span class="output-cyan">E-commerce Platform</span>     Headless multi-tenant SaaS (PIM/MDM, AI, ERP)',
     '  <span class="output-cyan">Automix Aggregator</span>     Auto parts catalog, 40M+ SKUs, 150+ suppliers (M&A exit)',
     '  <span class="output-cyan">FinTech Platform</span>        Crypto-processing & cross-exchange arbitrage ($20M+ BTC)',
+    '  <span class="output-cyan">Career Sniper</span>           AI job radar — LLM analysis, TLS-impersonation, 90% noise cut',
     '  <span class="output-cyan">Infrastructure</span>          Automated Proxmox/KVM Cluster via Terraform/Ansible (IaC)',
     '',
     '  <span class="output-info">Type <span class="output-cyan">cv</span> or <span class="output-cyan">resume</span> for full details.</span>',
