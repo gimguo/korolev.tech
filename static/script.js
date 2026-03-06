@@ -38,9 +38,7 @@ const COMMANDS = {
       ['System Design',    9],
       ['CI/CD Pipelines',  8],
       ['AI/ML Integration',7],
-      ['Sleeping in Prod', 2],
       ['Corporate Meetings',1],
-      ['Crunch Master',     1],
       ['Work-Life Balance', 5],
     ];
     const lines = ['', '<span class="output-bold">  Technical Skills</span>', ''];
