@@ -112,8 +112,8 @@ html, body {
 
 .boot-photo-inner {
     position: relative;
-    width: 146px;
-    height: 146px;
+    width: 195px;
+    height: 195px;
     overflow: hidden;
     border: 1px solid var(--green-dark);
     box-shadow:
@@ -161,8 +161,8 @@ html, body {
 
 @media (max-width: 600px) {
     .boot-photo-inner {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
     }
 }
 
@@ -260,7 +260,7 @@ html, body {
     font-family: var(--font);
     font-size: 14px;
     flex: 1;
-    caret-color: var(--green);
+    caret-color: transparent;
 }
 
 .cursor-blink {
