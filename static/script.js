@@ -267,7 +267,7 @@ function appendPromptAndCommand(cmd) {
 }
 
 function scrollToBottom() {
-  termBody.scrollTop = termBody.scrollHeight;
+  output.scrollTop = output.scrollHeight;
 }
 
 function escapeHtml(str) {
