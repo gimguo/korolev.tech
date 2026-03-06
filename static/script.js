@@ -66,7 +66,7 @@ const COMMANDS = {
     '<span class="output-bold">  Projects</span>',
     '',
     '  <span class="output-cyan">E-commerce Platform</span>     Headless multi-tenant SaaS (PIM/MDM, AI, ERP)',
-    '  <span class="output-cyan">Price Aggregator</span>        Data parsing & aggregation engine, 2M+ variants',
+    '  <span class="output-cyan">Price Aggregator</span>        Data parsing & aggregation engine, 40M+ SKUs, 150+ suppliers',
     '  <span class="output-cyan">FinTech Platform</span>        Crypto-processing & cross-exchange arbitrage ($20M+ BTC)',
     '  <span class="output-cyan">Infrastructure</span>          Automated Proxmox/KVM Cluster via Terraform/Ansible (IaC)',
     '',
