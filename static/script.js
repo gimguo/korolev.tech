@@ -38,6 +38,8 @@ const COMMANDS = {
       ['System Design',    9],
       ['CI/CD Pipelines',  8],
       ['AI/ML Integration',7],
+      ['Proxmox / Virt',    9],
+      ['Terraform / Ansible',8],
       ['Web3 / Blockchain',8],
       ['RabbitMQ / Messaging',9],
       ['Corporate Meetings',1],
