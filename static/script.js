@@ -623,11 +623,12 @@ document.addEventListener('DOMContentLoaded', () => { boot(); initIdleDetection(
 
 let idleTimer    = null;
 let attackActive = false;
+let attackShown  = false;  // fires only once per page session
 const IDLE_MS    = 30000;
 
 function initIdleDetection() {
   function resetIdle() {
-    if (attackActive) return;
+    if (attackActive || attackShown) return;
     clearTimeout(idleTimer);
     idleTimer = setTimeout(launchProtocol, IDLE_MS);
   }
@@ -894,6 +895,8 @@ async function terminalAttackSequence(ip, city, titleBlink, origTitle, origFavic
   tLine(W + '<span class="output-highlight">🎯  TARGET    : ' + ip + (city ? '  |  ' + city : '') + '</span>');
   await delay(300);
   tLine(W + '<span class="output-highlight">🚀  1000 PODS READY TO GO</span>');
+  await delay(400);
+  tLine(W + '<span class="output-highlight">🔑  ROOT PASSWORD FOUND SUCCESSFULLY</span>');
   await delay(600);
   tLine('');
   tLine(W + '<span class="output-error">▶  ARE YOU READY?  █</span>');
@@ -931,9 +934,9 @@ async function terminalAttackSequence(ip, city, titleBlink, origTitle, origFavic
     setTimeout(() => { popup.style.display = 'none'; popup.classList.remove('popup-hide'); }, 250);
   }
 
+  // One-shot: never triggers again for this page session
   attackActive = false;
-  clearTimeout(idleTimer);
-  idleTimer = setTimeout(launchProtocol, 120000);
+  attackShown  = true;
 }
 
 // ── Attack Popup Drag ───────────────────────────────────────
