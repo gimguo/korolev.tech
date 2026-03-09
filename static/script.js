@@ -197,67 +197,6 @@ const BANNER = `<div class="banner-wrap"><span class="ascii-art">
                                <span class="output-cyan">. T E C H</span>
 </span></div>`;
 
-const BIO_ASCII_ART = `<pre class="boot-ascii-photo">
-         .                            .      =
-   -= -# * **%%  --*  . . *   **#  %% :@#.* .* =###.:  ##**#**-  #--+%**####  = +=.+. --*=@# ==-
-  :.  :* =  ** @+ :-=..++   -:-*#. *@ =@% %  * =#+++ . %+ @  .# .* .%#=  ..- :# *=+*- =-*.** ==:
-  *@:  * *  **  %* =:-= -=  *@.++# :@ #%@@@ :# +#### .**#   *   =  *%:     -. . =#*#  +##*+# ==.-
-  =%#@...@%.:+ @*.@: -=-==@.  #-*#*@@##*@*            *+*  +*=#-*-@@=:=##= :=+*.+=   .=    + =-= .
-    ****  :***     %  ::+ = - @=                .       %##=#=:+- #==: +**@%= # -  *= +#%##* =--
-      .+=#  :#  #  :#+=-+= =+..   ........       ::  :*     :*%*#@@**==**= *# #  :+:. ##*    ==.
-  *##**##*#*#*###*@=:*#:=-@--.  .......    .. .: .==-            @+*+ :=:-=## #.**  :=-    . === .
-  ****#+#**#**     -  :::      ...           -=+***+*%@@@*         %+-::::   .#   . -::## *+ ===.
-      **    : :*        *.. ...     :--+*+*+++=-=======+##%#.    :  =#%++*****#=+#*  ::-:=#: =:=
-  **#.  ***= *=*@@@%%@@=..       --=-====-=-=-----====+=++*#*.:+     ..  :...  #- *=+*=:-::: =+= .
-  *#**#+*+***%*%%###%*%      :-=====--:------------=====+++*#+. =:-:: =-=:+#+= #= .  =: ##   ===
-  +:+ ##%#******+++#+=*     *==::-:---:--:---=-===-=--=====++#*-:.-*+* =          : =##*=+#* ==.
-  = -   ####-  ###- +@     ++--:-:::-::--:--:---==----+==+==+++-+=: =@  *- :.:  **% =        --. :
-  . #      *##   :#* : -   +-:::-:-::-::-:----:-:---========+=++**#*-.- ++ = =.:*%+ # =##**# ::-=:
-       .      **+  *****  +-.::::::--:-:-:-:-:=-===++++====+++*++***+*- :    @+-:   =..=:*%# ====%
-  %%.%#=%@%@@%.*@@@#*%@@ .+--::::---::-:--==--====+++++=+=+++++**++*+## %.#. :.   *#  *#+  .**@:-.
-  -: =***+=+*%# = ******* -----:-------::--=+*#%%%*=::+**++===++*++++++   =:: %%*#*#--  :*#+.    =
-  .        :.  .@.% **. % :-:---::----:::--=:           .=+++++++*=+++*# .@ %*=-++*#  .#-.   :. -*
-  *@@@-+:  ::  =* % ..*+* +*=+++-===-:-:-.     .#@@@@@@%*=++*=+++*+==+=*- +*****:+=# .  -***:*-.#*
-  **++#@@@+=-   # * : . #..      .:-:--:=. :++==       :#*===*++=++++=+--% :- **+#+#+****#.****##*
-         -*%%%%*+     : #  .-::.      :=+**+    .@@%*@.  -=-=+==+++*+.+*%#@ -=++-==# . +        .
-  ****++-+=***%@@@@#*+    -=         .--++=+    +%   =@**..:.:-+=+++*:=%@-@: @%=+=+# -  .     -.
-  %##%#%##=%-  -==%%%@%+*:   %@.:-   =+-==-..:.  ----=+%@#+-:-==++++*--@ .@@ %--+=**  =#%.##*=- +=
-  ......:..-..::..  :.*%%+   @    : ++:=++===+     :---.::----==++++*=-@   # *****%%   +* *.  .:#*
-  ***+=++.-=-. -.* ..= ..  :.....   *-=++++==+*%+. ::-::.:.-=+=+++++*=-@@+ -#-.    .=@    *#%@@*-
-   *+*   .:++****  -  * * :=--.    :=:-=**###*+*+*++--.::-=+=+++*++*+==%   -=  .       -= *
- *%%%%%%@*:::.%%%%%%%%%%%=.-:. .:=+=-::*%= . :-:=+==-=-=+=++++=*+++**=-*%%@:@@@@@@@@@@@@@@@%-*****
-  ...:..=:%#*::::-..%%#.:  ::------=---#%-+@@#=  -========++=+==+++*+-.:###:*%%%##*#   .  ..::::::
-  %#**+=+:=:@::**++*#-.%%: ------.-::=**%*   #@*  .-=---==++++=+++**=:+-# .+%#..:.::-@%%%%%%%%%%#*-
-  .**=*=+  :  :  ::...  %= -:::..      #@%@@=  :+: .:=====+=+-+=+#+=-=++*==#*%##***- - -*+=+:   ::
-       ::-#%@@@@@**+%%%@@: .--::. -=        -###+*+::::--=+++=+++++-:=-+=+++::....+: %:-- *+.   ++
-  -#+#%@@+-   . +-: ####%%- ::::.:=-          :+=***==:--=+==++====-=-=+--:.-:+:+*:=.*       ..:=:
-  .       == .+-- =.=:::-*= :-.::=.   :#:          :=*==-=-==--++++==*+*:+*++= +-.:- =-##****==+++
-  *+*##****-*=.=***+@##**** -=:::  .---.+%#+=----     ========:#++*--+:=.+**+%#***+++%++-*********
-  -=...++++=+**=-.-:****#-% .=-:   .       . ---. :+   :=====-.=++==-=.* ++===++...-**#=  - -=+*=*
-  #+###*..-    =****@. .=.%  :-=    :-==+*****#*#@#%%-  ==+=+=*+=-*.- =%.+**++++++*#-++******=.  =
-  *=.    .+#****@   **:=*-@%  -- .+=:::-::. -=====++*=....-:-==+++--# =%::#+=+=+* *=::=*#+.*******
-    .**###**- :..   **++- :@*  ..::=-:        ==-==++=-:-=:::=# : :+:*##+ *##++*#+-:  * =-=-:.:.
-  ***+  :+      :  *@@@@@@+*@  ..:-==-..    ==----==:=#=.=--:+ .=:: ==**@ . #@%##= *-=:   =-**--.*
-  *  *+   :+    +@%:*    .--%      .:::::: ...-=-:..::=....:: . - ---=**%-:@   %%**#+ :++       =-
-  :-   **..= *@%@.  %- . -  %.  ..    .:.    :@-:::-: : :...  - . --**=+*@ @@-    +#**@*=***#* ::
-      + :  %@%.::   =#%%@*.#@@  ......  ... .% .::::*  = . .:  -- :#*++++@ *@@ .      :##@% =. =+*
-  +**   @%%   :  =- @@+ *.@%   ............ ...  :. +:-=  .  :: --#++==+#% %@= ....:.     @%@@
-    :#@%.  .  -@%*  @@#=:     ..............  # :=  -. =. .  -  ##*+==++%+.@@  .::...  .     +@@@+
-  @%@   :    @@-: ++.      ................ . .==.:.  .=...    %#++=+==+#.+@  .........   .      @
-  -.     *#@@          ....................:-    +.-@=:.    -@@#*+++++*+-.+-  .:.. .........
-   +  @@@@%       .............................  .*  :    -%@*+==-===+=* @.   :.................
-   %@%%      ............................ . .    %-    :@@#+=--======+*+#.  .. ...................
-  @@     .............................   :      :=  =*#*+=---:====++**+.:  .......................
-     .................................+:.  --#+:.:-==--::---====+=***--   ........................
-   ..................................  :+=-=+++*+*++=+=-----====++#:+    .:.......................
-  .....................................  ==+----=============++#%+     ...:.......................
-  ......................................   *##*==--==-==+=*#%@@+    ..............................
-  ........................................    -#@@@@@@@@@@%=.    .........:.......................
-  ..........................................                   ...................................
-  ........................................................................:.......................
-  ................................................................................................
-  ................................................................................................
-</pre>`;
 
 const WELCOME_LINES = [
   '',
@@ -641,14 +580,12 @@ async function boot() {
     await delay(45 + Math.random() * 35);
   }
 
-  // ── Phase 2: Biometric block with ASCII portrait ────────
+  // ── Phase 2: Biometric block ─────────────────────────────
   const bioBlock = document.createElement('div');
   bioBlock.className = 'bio-block';
   bioBlock.innerHTML = [
     '<div class="line"><span class="output-info">  ┌──────────────────────────────────┐</span></div>',
     '<div class="line"><span class="output-info">  │ <span class="output-text">SCANNING BIOMETRIC DATA...</span>       │</span></div>',
-    '<div class="line"><span class="output-info">  │                                  │</span></div>',
-    '<div class="line"><div class="boot-ascii-wrap">' + BIO_ASCII_ART + '</div></div>',
     '<div class="line"><span class="output-info">  │                                  │</span></div>',
     '<div class="line"><span class="output-info">  │ <span class="boot-ok">IDENTIFIED</span> · <span class="output-cyan">Andrew Korolev</span>       │</span></div>',
     '<div class="line"><span class="output-info">  │ <span class="output-text">ACCESS LEVEL:</span> <span class="output-highlight">PRINCIPAL</span>          │</span></div>',
@@ -656,9 +593,7 @@ async function boot() {
   ].join('');
   appendElement(bioBlock);
   scrollToBottom();
-  await delay(500);
-  scrollToBottom();
-  await delay(200);
+  await delay(300);
 
   // ── Phase 3: KOROLEV.TECH banner ─────────────────────────
   appendOutput(BANNER);
@@ -674,6 +609,176 @@ async function boot() {
 
   isTyping = false;
   input.focus();
+
+  // ── Phase 5: Fatal Error Popup ───────────────────────────
+  setTimeout(() => {
+    playFatalErrorSound();
+    showErrorPopup();
+  }, 800);
 }
 
 document.addEventListener('DOMContentLoaded', boot);
+
+// ── Fatal Error Sound (Web Audio API) ──────────────────────
+
+function playFatalErrorSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    // Windows-style critical error: descending beeps
+    const notes = [
+      { freq: 880, t: 0.00, dur: 0.12 },
+      { freq: 660, t: 0.15, dur: 0.12 },
+      { freq: 440, t: 0.30, dur: 0.28 },
+    ];
+    notes.forEach(({ freq, t, dur }) => {
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'square';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.setValueAtTime(0.18, ctx.currentTime + t);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + dur);
+      osc.start(ctx.currentTime + t);
+      osc.stop(ctx.currentTime + t + dur + 0.05);
+    });
+  } catch (e) { /* silently ignore if browser blocks autoplay */ }
+}
+
+// ── Error Popup ─────────────────────────────────────────────
+
+function showErrorPopup() {
+  const popup = document.getElementById('error-popup');
+  if (!popup) return;
+
+  // Center on screen
+  const pw = popup.offsetWidth  || 370;
+  const ph = popup.offsetHeight || 280;
+  popup.style.left = Math.max(10, (window.innerWidth  - pw) / 2) + 'px';
+  popup.style.top  = Math.max(10, (window.innerHeight - ph) / 2) + 'px';
+  popup.style.display = 'block';
+
+  // Shake animation
+  popup.classList.add('popup-shake');
+  setTimeout(() => popup.classList.remove('popup-shake'), 500);
+}
+
+function hideErrorPopup() {
+  const popup = document.getElementById('error-popup');
+  if (popup) {
+    popup.classList.add('popup-hide');
+    setTimeout(() => { popup.style.display = 'none'; popup.classList.remove('popup-hide'); }, 200);
+  }
+}
+
+// ── Popup Drag ──────────────────────────────────────────────
+
+(function initPopup() {
+  let drag = { on: false, startX: 0, startY: 0, origLeft: 0, origTop: 0 };
+
+  function getPopup() { return document.getElementById('error-popup'); }
+
+  function onDragStart(cx, cy) {
+    const p = getPopup();
+    if (!p) return;
+    drag.on = true;
+    drag.startX  = cx;
+    drag.startY  = cy;
+    drag.origLeft = parseInt(p.style.left) || 0;
+    drag.origTop  = parseInt(p.style.top)  || 0;
+    p.classList.add('popup-dragging');
+  }
+
+  function onDragMove(cx, cy) {
+    if (!drag.on) return;
+    const p = getPopup();
+    if (!p) return;
+    const nx = drag.origLeft + (cx - drag.startX);
+    const ny = drag.origTop  + (cy - drag.startY);
+    p.style.left = clampX(nx, p) + 'px';
+    p.style.top  = clampY(ny, p) + 'px';
+  }
+
+  function onDragEnd() {
+    drag.on = false;
+    const p = getPopup();
+    if (p) p.classList.remove('popup-dragging');
+  }
+
+  function clampX(x, p) { return Math.max(0, Math.min(x, window.innerWidth  - p.offsetWidth)); }
+  function clampY(y, p) { return Math.max(0, Math.min(y, window.innerHeight - p.offsetHeight)); }
+
+  // Mouse drag
+  document.addEventListener('DOMContentLoaded', () => {
+    const titlebar = document.getElementById('error-titlebar');
+    if (!titlebar) return;
+
+    titlebar.addEventListener('mousedown', (e) => {
+      if (e.target.id === 'error-close') return;
+      onDragStart(e.clientX, e.clientY);
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', (e) => onDragMove(e.clientX, e.clientY));
+    document.addEventListener('mouseup', onDragEnd);
+
+    // Touch drag
+    titlebar.addEventListener('touchstart', (e) => {
+      if (e.target.id === 'error-close') return;
+      const t = e.touches[0];
+      onDragStart(t.clientX, t.clientY);
+    }, { passive: true });
+    document.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      onDragMove(t.clientX, t.clientY);
+    }, { passive: true });
+    document.addEventListener('touchend', onDragEnd);
+
+    // Close button — runs away
+    const closeBtn = document.getElementById('error-close');
+    if (closeBtn) {
+      function runAway() {
+        const p = getPopup();
+        if (!p) return;
+        const pw = p.offsetWidth;
+        const ph = p.offsetHeight;
+        const pad = 10;
+        const maxX = window.innerWidth  - pw - pad;
+        const maxY = window.innerHeight - ph - pad;
+        p.classList.add('popup-jumping');
+        p.style.left = (pad + Math.random() * Math.max(0, maxX - pad)) + 'px';
+        p.style.top  = (pad + Math.random() * Math.max(0, maxY - pad)) + 'px';
+        setTimeout(() => p.classList.remove('popup-jumping'), 300);
+      }
+      closeBtn.addEventListener('mouseenter', runAway);
+      closeBtn.addEventListener('touchstart', runAway, { passive: true });
+    }
+
+    // ESC closes popup
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') hideErrorPopup();
+    });
+
+    // OK / Cancel also run away (fun easter egg)
+    ['error-ok-btn', 'error-cancel-btn'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        function runAwayBtn() {
+          const p = getPopup();
+          if (!p) return;
+          const pw = p.offsetWidth;
+          const ph = p.offsetHeight;
+          const pad = 10;
+          const maxX = window.innerWidth  - pw - pad;
+          const maxY = window.innerHeight - ph - pad;
+          p.classList.add('popup-jumping');
+          p.style.left = (pad + Math.random() * Math.max(0, maxX - pad)) + 'px';
+          p.style.top  = (pad + Math.random() * Math.max(0, maxY - pad)) + 'px';
+          setTimeout(() => p.classList.remove('popup-jumping'), 300);
+        }
+        btn.addEventListener('mouseenter', runAwayBtn);
+        btn.addEventListener('touchstart', runAwayBtn, { passive: true });
+      }
+    });
+  });
+})();

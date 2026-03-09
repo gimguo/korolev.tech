@@ -7,7 +7,7 @@
     <meta name="description" content="Andrew Korolev — Principal Engineer. Terminal-style portfolio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=50">
+    <link rel="stylesheet" href="/style.css?v=51">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
@@ -29,9 +29,35 @@
         </div>
     </div>
 
+    <!-- Windows-style fatal error popup -->
+    <div id="error-popup" style="display:none;">
+        <div id="error-titlebar">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect width='16' height='16' fill='%23c0c0c0'/%3E%3Ctext x='2' y='12' font-size='12' fill='red'%3E!%3C/text%3E%3C/svg%3E" class="error-title-icon" alt="">
+            <span id="error-title">FATAL_ERROR — korolev.exe</span>
+            <button id="error-close" title="Good luck clicking this">✕</button>
+        </div>
+        <div id="error-body">
+            <div id="error-icon-wrap">&#x26A0;</div>
+            <div id="error-text">
+                <div id="error-heading">CRITICAL SYSTEM FAILURE</div>
+                <p>An unauthorized process has been<br>detected on this terminal.</p>
+                <p>Process: <b>visitor.exe</b><br>Code: <b>0xDEADC0DE</b></p>
+            </div>
+        </div>
+        <div id="error-photo-wrap">
+            <img src="/img/portrait.png" id="error-photo" alt="IDENTIFIED">
+            <div id="error-photo-label">▶ SUBJECT IDENTIFIED</div>
+        </div>
+        <div id="error-buttons">
+            <button class="error-btn" id="error-ok-btn">OK</button>
+            <button class="error-btn" id="error-cancel-btn">Cancel</button>
+        </div>
+        <div id="error-hint">Hint: press <kbd>ESC</kbd> to dismiss</div>
+    </div>
+
     <script>
     document.getElementById('prompt-text').innerHTML = 'visitor' + String.fromCharCode(64) + 'korolev.tech:~$&nbsp;';
     </script>
-    <script src="/script.js?v=50"></script>
+    <script src="/script.js?v=51"></script>
 </body>
 </html>
