@@ -419,9 +419,8 @@ html, body {
 #error-photo {
     display: block;
     width: 100%;
-    max-height: 140px;
-    object-fit: cover;
-    object-position: top center;
+    height: auto;
+    object-fit: contain;
     filter: brightness(0.9) contrast(1.1);
 }
 
