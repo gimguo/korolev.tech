@@ -622,15 +622,24 @@ document.addEventListener('DOMContentLoaded', () => { boot(); initIdleDetection(
 // ── Idle Detection & Attack Sequence ───────────────────────
 
 let idleTimer    = null;
+let closeTimer   = null;
 let attackActive = false;
 let attackShown  = false;  // fires only once per page session
 const IDLE_MS    = 30000;
+const CLOSE_MS   = 10 * 60 * 1000; // 10 minutes
 
 function initIdleDetection() {
   function resetIdle() {
-    if (attackActive || attackShown) return;
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(launchProtocol, IDLE_MS);
+    // Attack timer — fires once at 30s
+    if (!attackActive && !attackShown) {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(launchProtocol, IDLE_MS);
+    }
+    // Close timer — always resets on activity
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => {
+      window.location.href = 'about:blank';
+    }, CLOSE_MS);
   }
   ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'].forEach(ev =>
     document.addEventListener(ev, resetIdle, { passive: true })
