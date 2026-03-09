@@ -896,7 +896,7 @@ async function terminalAttackSequence(ip, city, titleBlink, origTitle, origFavic
   await delay(300);
   tLine(W + '<span class="output-highlight">🚀  1000 PODS READY TO GO</span>');
   await delay(400);
-  tLine(W + '<span class="output-highlight">🔑  ROOT PASSWORD FOUND SUCCESSFULLY</span>');
+  tLine(W + '<span class="output-highlight">🔑  PASSWORD CRACKED — ACCESS GRANTED</span>');
   await delay(600);
   tLine('');
   tLine(W + '<span class="output-error">▶  ARE YOU READY?  █</span>');
