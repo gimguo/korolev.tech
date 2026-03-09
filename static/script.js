@@ -828,34 +828,41 @@ async function terminalAttackSequence(ip, city, titleBlink, origTitle, origFavic
   tLine(W + '<span class="output-error">▶  ARE YOU READY?  █</span>');
   scrollToBottom();
 
-  // ── Phase 4: Shutdown & close tab ──────────────────────
-  await delay(3000);
+  // ── Phase 4: Punchline ──────────────────────────────────
+  await delay(5000);
   tLine('');
-  tLine(W + '<span class="output-error">[SYSTEM]   Attack confirmed. Initiating shutdown sequence...</span>');
-  await delay(700);
-  tLine(W + '<span class="output-error">[SYSTEM]   Closing all connections...</span>');
-  await delay(500);
-  tLine(W + '<span class="output-error">[SYSTEM]   Wiping traces...  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  100%</span>');
-  await delay(500);
-  tLine(W + '<span class="output-error">[SYSTEM]   Destroying infrastructure...</span>');
+  tLine(W + '<span class="output-info">... awaiting confirmation ... timeout (5s)</span>');
+  await delay(1200);
+  tLine(W + '<span class="output-info">[SYSTEM]   Target unresponsive. Operation aborted automatically.</span>');
   await delay(600);
-  tLine(W + '<span class="output-error">[SYSTEM]   All logs purged. No evidence remains.</span>');
-  await delay(700);
+  tLine(W + '<span class="output-info">[SYSTEM]   Infrastructure destroyed. All traces wiped.</span>');
+  await delay(600);
+  tLine(W + '<span class="output-info">[SYSTEM]   No targets were harmed in the making of this website.</span>');
+  await delay(800);
   tLine('');
-  tLine(W + '<span class="output-error">  ██████████████████████████████████████████████████████████████</span>');
-  tLine(W + '<span class="output-error">  ██                                                          ██</span>');
-  tLine(W + '<span class="output-error">  ██   CONNECTION TERMINATED. GOODBYE.                       ██</span>');
-  tLine(W + '<span class="output-error">  ██                                                          ██</span>');
-  tLine(W + '<span class="output-error">  ██████████████████████████████████████████████████████████████</span>');
+  tLine(W + '<span class="output-highlight">😄  Just kidding. Welcome to korolev.tech!</span>');
+  tLine(W + '<span class="output-info">  Type <span class="output-cyan">help</span> to see what I can actually do.</span>');
+  tLine('');
   scrollToBottom();
 
-  // Stop title blink, set final title
+  // Restore title & favicon
   clearInterval(titleBlink);
-  document.title = '💀 CONNECTION TERMINATED';
+  document.title = origTitle;
+  if (origFavicon && origFavHref) origFavicon.href = origFavHref;
 
-  await delay(2000);
-  // Navigate tab to blank — looks like the page "died"
-  window.location.href = 'about:blank';
+  // Close popup
+  await delay(1500);
+  const popup = document.getElementById('attack-popup');
+  if (popup) {
+    document.getElementById('attack-title-text').textContent = 'OPERATION CANCELLED 😄';
+    await delay(1000);
+    popup.classList.add('popup-hide');
+    setTimeout(() => { popup.style.display = 'none'; popup.classList.remove('popup-hide'); }, 250);
+  }
+
+  attackActive = false;
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(launchProtocol, 120000);
 }
 
 // ── Attack Popup Drag ───────────────────────────────────────
