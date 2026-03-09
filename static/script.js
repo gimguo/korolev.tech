@@ -688,6 +688,19 @@ async function launchProtocol() {
   setTimeout(() => popup.classList.remove('popup-shake'), 500);
   playFatalErrorSound();
 
+  // ── Tab title + favicon hijack ──────────────────────────
+  const origTitle   = document.title;
+  const origFavicon = document.querySelector("link[rel='icon']");
+  const origFavHref = origFavicon ? origFavicon.href : '';
+  if (origFavicon) {
+    origFavicon.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>";
+  }
+  const titles = ['⚠ SYSTEM COMPROMISED', '💀 korolev.exe'];
+  let titleIdx = 0;
+  const titleBlink = setInterval(() => {
+    document.title = titles[titleIdx++ % 2];
+  }, 900);
+
   function pLine(text, cls) {
     const d = document.createElement('div');
     d.className = 'attack-line' + (cls ? ' attack-' + cls : '');
@@ -743,10 +756,10 @@ async function launchProtocol() {
   document.getElementById('attack-title-text').textContent = '🔴 TARGET LOCKED — LAUNCHING ATTACK';
 
   // ── Phase 3: Terminal attack sequence ───────────────────
-  await terminalAttackSequence(ipStr, cityStr);
+  await terminalAttackSequence(ipStr, cityStr, titleBlink, origTitle, origFavicon, origFavHref);
 }
 
-async function terminalAttackSequence(ip, city) {
+async function terminalAttackSequence(ip, city, titleBlink, origTitle, origFavicon, origFavHref) {
   function tLine(html) {
     appendOutput(html);
     scrollToBottom();
@@ -815,37 +828,34 @@ async function terminalAttackSequence(ip, city) {
   tLine(W + '<span class="output-error">▶  ARE YOU READY?  █</span>');
   scrollToBottom();
 
-  // ── Phase 4: Punchline ──────────────────────────────────
-  await delay(5000);
+  // ── Phase 4: Shutdown & close tab ──────────────────────
+  await delay(3000);
   tLine('');
-  tLine(W + '<span class="output-info">... ожидание подтверждения ... timeout (5s)</span>');
-  await delay(1200);
-  tLine(W + '<span class="output-info">[SYSTEM]  Цель не отвечает. Операция прервана автоматически.</span>');
+  tLine(W + '<span class="output-error">[SYSTEM]   Attack confirmed. Initiating shutdown sequence...</span>');
+  await delay(700);
+  tLine(W + '<span class="output-error">[SYSTEM]   Closing all connections...</span>');
+  await delay(500);
+  tLine(W + '<span class="output-error">[SYSTEM]   Wiping traces...  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  100%</span>');
+  await delay(500);
+  tLine(W + '<span class="output-error">[SYSTEM]   Destroying infrastructure...</span>');
   await delay(600);
-  tLine(W + '<span class="output-info">[SYSTEM]  Инфраструктура уничтожена. Все логи очищены.</span>');
-  await delay(600);
-  tLine(W + '<span class="output-info">[SYSTEM]  No targets were harmed in the making of this website.</span>');
-  await delay(800);
+  tLine(W + '<span class="output-error">[SYSTEM]   All logs purged. No evidence remains.</span>');
+  await delay(700);
   tLine('');
-  tLine(W + '<span class="output-highlight">😄  Just kidding. Welcome to korolev.tech!</span>');
-  tLine(W + '<span class="output-info">Type <span class="output-cyan">help</span> to see what I can actually do.</span>');
-  tLine('');
+  tLine(W + '<span class="output-error">  ██████████████████████████████████████████████████████████████</span>');
+  tLine(W + '<span class="output-error">  ██                                                          ██</span>');
+  tLine(W + '<span class="output-error">  ██   CONNECTION TERMINATED. GOODBYE.                       ██</span>');
+  tLine(W + '<span class="output-error">  ██                                                          ██</span>');
+  tLine(W + '<span class="output-error">  ██████████████████████████████████████████████████████████████</span>');
   scrollToBottom();
 
-  // Close popup
-  await delay(1500);
-  const popup = document.getElementById('attack-popup');
-  if (popup) {
-    document.getElementById('attack-title-text').textContent = 'OPERATION CANCELLED 😄';
-    await delay(1000);
-    popup.classList.add('popup-hide');
-    setTimeout(() => { popup.style.display = 'none'; popup.classList.remove('popup-hide'); }, 250);
-  }
+  // Stop title blink, set final title
+  clearInterval(titleBlink);
+  document.title = '💀 CONNECTION TERMINATED';
 
-  attackActive = false;
-  // Restart idle detection with a longer gap (120s) before next trigger
-  clearTimeout(idleTimer);
-  idleTimer = setTimeout(launchProtocol, 120000);
+  await delay(2000);
+  // Navigate tab to blank — looks like the page "died"
+  window.location.href = 'about:blank';
 }
 
 // ── Attack Popup Drag ───────────────────────────────────────
