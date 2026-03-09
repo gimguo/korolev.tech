@@ -194,7 +194,7 @@ const BANNER = `<div class="banner-wrap"><span class="ascii-art">
  | ' /  | | | | | |_) || | | | | |    |  _|    \\ \\/ /
  | . \\  | |_| | |  _ < | |_| | | |___ | |___    \\  /
  |_|\\_\\  \\___/  |_| \\_\\ \\___/  |_____||_____|    \\/
-                               <span class="output-cyan">. T E C H</span>
+                         <span class="output-cyan">. T E C H</span>
 </span></div>`;
 
 
@@ -290,7 +290,7 @@ function appendPromptAndCommand(cmd) {
 
 function scrollToBottom() {
   requestAnimationFrame(() => {
-    output.scrollTop = output.scrollHeight;
+  output.scrollTop = output.scrollHeight;
 
     const lastLine = output.lastElementChild;
     if (lastLine) {
@@ -597,7 +597,7 @@ async function boot() {
 
   // ── Phase 3: KOROLEV.TECH banner ─────────────────────────
   appendOutput(BANNER);
-  scrollToBottom();
+    scrollToBottom();
   await delay(100);
 
   // ── Phase 4: Welcome ─────────────────────────────────────
@@ -617,7 +617,280 @@ async function boot() {
   }, 800);
 }
 
-document.addEventListener('DOMContentLoaded', boot);
+document.addEventListener('DOMContentLoaded', () => { boot(); initIdleDetection(); });
+
+// ── Idle Detection & Attack Sequence ───────────────────────
+
+let idleTimer    = null;
+let attackActive = false;
+const IDLE_MS    = 30000;
+
+function initIdleDetection() {
+  function resetIdle() {
+    if (attackActive) return;
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(launchProtocol, IDLE_MS);
+  }
+  ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'].forEach(ev =>
+    document.addEventListener(ev, resetIdle, { passive: true })
+  );
+  resetIdle();
+}
+
+// ── Browser / OS helpers ────────────────────────────────────
+
+function getBrowserName() {
+  const ua = navigator.userAgent;
+  if (ua.includes('Edg'))     return 'Microsoft Edge';
+  if (ua.includes('Firefox')) return 'Firefox';
+  if (ua.includes('Chrome'))  return 'Chrome';
+  if (ua.includes('Safari'))  return 'Safari';
+  if (ua.includes('Opera') || ua.includes('OPR')) return 'Opera';
+  return 'Unknown';
+}
+
+function getOSName() {
+  const ua = navigator.userAgent;
+  if (ua.includes('Windows NT 10') || ua.includes('Windows NT 11')) return 'Windows 10/11';
+  if (ua.includes('Windows NT 6'))  return 'Windows 7/8';
+  if (ua.includes('Mac OS X'))      return 'macOS';
+  if (ua.includes('Android'))       return 'Android';
+  if (ua.includes('iPhone') || ua.includes('iPad')) return 'iOS';
+  if (ua.includes('Linux'))         return 'Linux';
+  return 'Unknown';
+}
+
+// ── Launch Protocol ─────────────────────────────────────────
+
+async function launchProtocol() {
+  if (attackActive) return;
+  attackActive = true;
+
+  // ── Phase 1: Countdown ──────────────────────────────────
+  const countdownEl  = document.getElementById('attack-countdown');
+  const countdownNum = document.getElementById('countdown-num');
+  countdownEl.style.display = 'flex';
+
+  for (let i = 5; i >= 1; i--) {
+    countdownNum.textContent = i;
+    await delay(1000);
+  }
+  countdownEl.style.display = 'none';
+
+  // ── Phase 2: Attack popup — reveal info ─────────────────
+  const popup   = document.getElementById('attack-popup');
+  const content = document.getElementById('attack-content');
+
+  popup.style.left = Math.max(10, (window.innerWidth  - 420) / 2) + 'px';
+  popup.style.top  = Math.max(10, (window.innerHeight - 340) / 2) + 'px';
+  popup.style.display = 'block';
+  popup.classList.add('popup-shake');
+  setTimeout(() => popup.classList.remove('popup-shake'), 500);
+  playFatalErrorSound();
+
+  function pLine(text, cls) {
+    const d = document.createElement('div');
+    d.className = 'attack-line' + (cls ? ' attack-' + cls : '');
+    d.innerHTML = text;
+    content.appendChild(d);
+    content.scrollTop = content.scrollHeight;
+  }
+
+  const SEP = '──────────────────────────────────';
+
+  pLine('ИНИЦИАЛИЗАЦИЯ ПРОТОКОЛА ЗАЩИТЫ...', 'system');
+  await delay(500);
+  pLine(SEP, 'sep');
+  await delay(200);
+  pLine('СКАНИРОВАНИЕ ЦЕЛИ...', 'scan');
+  await delay(700);
+
+  pLine('BROWSER   › ' + getBrowserName(), 'data');       await delay(280);
+  pLine('OS        › ' + getOSName(), 'data');             await delay(280);
+  pLine('SCREEN    › ' + screen.width + 'x' + screen.height + ' @' + screen.colorDepth + 'bit', 'data'); await delay(280);
+  pLine('LANGUAGE  › ' + (navigator.language || '?'), 'data'); await delay(280);
+  pLine('TIMEZONE  › ' + Intl.DateTimeFormat().resolvedOptions().timeZone, 'data'); await delay(280);
+  pLine('CPU CORES › ' + (navigator.hardwareConcurrency || '?'), 'data'); await delay(280);
+  pLine('MEMORY    › ' + (navigator.deviceMemory ? navigator.deviceMemory + ' GB' : '?'), 'data'); await delay(400);
+
+  pLine(SEP, 'sep');
+  await delay(200);
+  pLine('ПОЛУЧЕНИЕ IP АДРЕСА...', 'scan');
+
+  let ipStr = '[CLASSIFIED]';
+  let cityStr = '';
+  try {
+    const r = await fetch('https://ip-api.com/json/?fields=query,city,country,isp');
+    const d = await r.json();
+    ipStr   = d.query   || '[CLASSIFIED]';
+    cityStr = (d.city && d.country) ? d.city + ', ' + d.country : '';
+    await delay(400);
+    pLine('IP        › ' + ipStr, 'ip');              await delay(220);
+    pLine('LOCATION  › ' + (cityStr || '?'), 'ip');   await delay(220);
+    pLine('ISP       › ' + (d.isp || '?'), 'ip');
+  } catch (e) {
+    await delay(400);
+    pLine('IP        › [CLASSIFIED]', 'ip');
+  }
+
+  await delay(700);
+  pLine(SEP, 'sep');
+  await delay(300);
+  pLine('⚠  TARGET DETECTED', 'alert');
+  await delay(600);
+  pLine('⚠  PREPARE FOR ATTACK...', 'alert');
+  await delay(500);
+  document.getElementById('attack-title-text').textContent = '🔴 TARGET LOCKED — LAUNCHING ATTACK';
+
+  // ── Phase 3: Terminal attack sequence ───────────────────
+  await terminalAttackSequence(ipStr, cityStr);
+}
+
+async function terminalAttackSequence(ip, city) {
+  function tLine(html) {
+    appendOutput(html);
+    scrollToBottom();
+  }
+
+  const W = '  '; // indent
+
+  await delay(400);
+  tLine('');
+  tLine(W + '<span class="output-error">┌───────────────────────────────────────────────────────────┐</span>');
+  tLine(W + '<span class="output-error">│  ⚡ ATTACK SEQUENCE INITIATED                              │</span>');
+  tLine(W + '<span class="output-error">└───────────────────────────────────────────────────────────┘</span>');
+  tLine('');
+
+  const seq = [
+    { ms:  200, cls: 'output-info',      t: '[TERRAFORM]  Разворачивание облачной инфраструктуры...' },
+    { ms:  700, cls: 'output-info',      t: '[TERRAFORM]  Planning: +1000 VPS nodes across 12 regions' },
+    { ms: 1100, cls: 'output-info',      t: '[TERRAFORM]  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 100% — Apply complete.' },
+    { ms:  200, cls: '',                 t: '' },
+    { ms:  100, cls: 'output-cyan',      t: '[ANSIBLE]    Конфигурация 1000 нод...' },
+    { ms:  900, cls: 'output-cyan',      t: '[ANSIBLE]    PLAY RECAP ══════════════════════════════════' },
+    { ms:  350, cls: 'output-cyan',      t: '[ANSIBLE]    1000 hosts | ok=47  changed=12  failed=0  unreachable=0' },
+    { ms:  350, cls: 'output-cyan',      t: '[ANSIBLE]    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ done' },
+    { ms:  200, cls: '',                 t: '' },
+    { ms:  100, cls: 'output-error',     t: '[BOTNET]     Загрузка модулей атаки...' },
+    { ms:  700, cls: 'output-error',     t: '[BOTNET]     C2 сервер: 95.142.x.x:4444 — connected ✓' },
+    { ms:  500, cls: 'output-error',     t: '[BOTNET]     Агентов загружено: 1000/1000 ✓' },
+    { ms:  200, cls: '',                 t: '' },
+    { ms:  100, cls: 'output-highlight', t: '[K8S]        kubectl apply -f shadow-ops/botnet-swarm.yaml' },
+    { ms:  400, cls: 'output-highlight', t: '[K8S]        namespace/shadow-ops created' },
+    { ms:  300, cls: 'output-highlight', t: '[K8S]        deployment.apps/attack-swarm created' },
+    { ms:  550, cls: 'output-highlight', t: '[K8S]        Waiting for pods...    0/1000 Running' },
+    { ms:  700, cls: 'output-highlight', t: '[K8S]        Waiting for pods...  312/1000 Running' },
+    { ms:  650, cls: 'output-highlight', t: '[K8S]        Waiting for pods...  867/1000 Running' },
+    { ms:  550, cls: 'output-highlight', t: '[K8S]        ✓ All 1000/1000 pods RUNNING' },
+    { ms:  200, cls: '',                 t: '' },
+    { ms:  100, cls: 'output-info',      t: '[SYSTEM]     Тестирование систем...' },
+    { ms:  600, cls: 'output-info',      t: '[PING]       target: ' + ip + '  ... 12ms ✓' },
+    { ms:  400, cls: 'output-info',      t: '[BANDWIDTH]  Пропускная способность: 94 Gbps ✓' },
+    { ms:  350, cls: 'output-info',      t: '[FIREWALL]   Bypass модули активированы ✓' },
+    { ms:  350, cls: 'output-info',      t: '[STEALTH]    Логи очищены. Следов нет ✓' },
+    { ms:  300, cls: '',                 t: '' },
+  ];
+
+  for (const { ms, cls, t } of seq) {
+    await delay(ms);
+    tLine(t ? W + '<span class="' + cls + '">' + t + '</span>' : '');
+  }
+
+  await delay(500);
+  const box = [
+    '<span class="output-error">  ██████████████████████████████████████████████████████████████</span>',
+    '<span class="output-error">  ██                                                          ██</span>',
+    '<span class="output-error">  ██   💀  BOTNET ГОТОВ К АТАКЕ                              ██</span>',
+    '<span class="output-error">  ██                                                          ██</span>',
+    '<span class="output-error">  ██████████████████████████████████████████████████████████████</span>',
+  ];
+  for (const l of box) { tLine(l); await delay(55); }
+
+  await delay(500);
+  tLine(W + '<span class="output-highlight">🎯  TARGET    : ' + ip + (city ? '  |  ' + city : '') + '</span>');
+  await delay(300);
+  tLine(W + '<span class="output-highlight">🚀  1000 PODS READY TO GO</span>');
+  await delay(600);
+  tLine('');
+  tLine(W + '<span class="output-error">▶  ARE YOU READY?  █</span>');
+  scrollToBottom();
+
+  // ── Phase 4: Punchline ──────────────────────────────────
+  await delay(5000);
+  tLine('');
+  tLine(W + '<span class="output-info">... ожидание подтверждения ... timeout (5s)</span>');
+  await delay(1200);
+  tLine(W + '<span class="output-info">[SYSTEM]  Цель не отвечает. Операция прервана автоматически.</span>');
+  await delay(600);
+  tLine(W + '<span class="output-info">[SYSTEM]  Инфраструктура уничтожена. Все логи очищены.</span>');
+  await delay(600);
+  tLine(W + '<span class="output-info">[SYSTEM]  No targets were harmed in the making of this website.</span>');
+  await delay(800);
+  tLine('');
+  tLine(W + '<span class="output-highlight">😄  Just kidding. Welcome to korolev.tech!</span>');
+  tLine(W + '<span class="output-info">Type <span class="output-cyan">help</span> to see what I can actually do.</span>');
+  tLine('');
+  scrollToBottom();
+
+  // Close popup
+  await delay(1500);
+  const popup = document.getElementById('attack-popup');
+  if (popup) {
+    document.getElementById('attack-title-text').textContent = 'OPERATION CANCELLED 😄';
+    await delay(1000);
+    popup.classList.add('popup-hide');
+    setTimeout(() => { popup.style.display = 'none'; popup.classList.remove('popup-hide'); }, 250);
+  }
+
+  attackActive = false;
+  // Restart idle detection with a longer gap (120s) before next trigger
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(launchProtocol, 120000);
+}
+
+// ── Attack Popup Drag ───────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  const atkTitlebar = document.getElementById('attack-titlebar');
+  if (!atkTitlebar) return;
+
+  let atkDrag = { on: false, sx: 0, sy: 0, ox: 0, oy: 0 };
+
+  function atkDragStart(cx, cy) {
+    const p = document.getElementById('attack-popup');
+    if (!p) return;
+    atkDrag = { on: true, sx: cx, sy: cy,
+      ox: parseInt(p.style.left) || 0,
+      oy: parseInt(p.style.top)  || 0 };
+  }
+
+  atkTitlebar.addEventListener('mousedown', e => {
+    atkDragStart(e.clientX, e.clientY);
+    e.preventDefault();
+  });
+  atkTitlebar.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    atkDragStart(t.clientX, t.clientY);
+  }, { passive: true });
+
+  document.addEventListener('mousemove', e => {
+    if (!atkDrag.on) return;
+    const p = document.getElementById('attack-popup');
+    if (!p) return;
+    p.style.left = Math.max(0, Math.min(atkDrag.ox + e.clientX - atkDrag.sx, window.innerWidth  - p.offsetWidth))  + 'px';
+    p.style.top  = Math.max(0, Math.min(atkDrag.oy + e.clientY - atkDrag.sy, window.innerHeight - p.offsetHeight)) + 'px';
+  });
+  document.addEventListener('touchmove', e => {
+    if (!atkDrag.on) return;
+    const t = e.touches[0];
+    const p = document.getElementById('attack-popup');
+    if (!p) return;
+    p.style.left = Math.max(0, Math.min(atkDrag.ox + t.clientX - atkDrag.sx, window.innerWidth  - p.offsetWidth))  + 'px';
+    p.style.top  = Math.max(0, Math.min(atkDrag.oy + t.clientY - atkDrag.sy, window.innerHeight - p.offsetHeight)) + 'px';
+  }, { passive: true });
+  document.addEventListener('mouseup',  () => { atkDrag.on = false; });
+  document.addEventListener('touchend', () => { atkDrag.on = false; });
+});
 
 // ── Fatal Error Sound (Web Audio API) ──────────────────────
 

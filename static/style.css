@@ -264,6 +264,135 @@ html, body {
 .skill-filled { color: var(--green); }
 .skill-empty  { color: var(--green-dark); }
 
+/* ── Attack Countdown Overlay ───────────────────────────── */
+#attack-countdown {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    background: rgba(0, 0, 0, 0.88);
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font);
+}
+
+#countdown-box {
+    text-align: center;
+    border: 1px solid #ff2200;
+    padding: 30px 60px;
+    background: #080808;
+    box-shadow: 0 0 50px rgba(255, 34, 0, 0.4),
+                inset 0 0 40px rgba(255, 34, 0, 0.05);
+}
+
+#countdown-warning {
+    color: #ff4444;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+    animation: atk-blink 0.8s step-end infinite;
+}
+
+#countdown-num {
+    color: #ff0000;
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 16px;
+    text-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+}
+
+#countdown-sub {
+    color: #444;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* ── Attack Popup ────────────────────────────────────────── */
+#attack-popup {
+    position: fixed;
+    z-index: 10000;
+    width: 420px;
+    max-width: calc(100vw - 20px);
+    background: #060606;
+    border: 1px solid #cc1100;
+    box-shadow: 0 0 30px rgba(255, 34, 0, 0.35),
+                0 0 80px rgba(255, 34, 0, 0.1);
+    font-family: var(--font);
+    font-size: 11px;
+    color: var(--green);
+    user-select: none;
+}
+
+#attack-titlebar {
+    background: linear-gradient(to right, #3d0000 0%, #820000 100%);
+    color: #ff5555;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: move;
+    border-bottom: 1px solid #cc1100;
+    min-height: 26px;
+}
+
+@keyframes atk-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+}
+
+.atk-blink {
+    color: #ff0000;
+    font-size: 10px;
+    animation: atk-blink 0.6s step-end infinite;
+    flex-shrink: 0;
+}
+
+#attack-title-text {
+    flex: 1;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#attack-lock-icon {
+    flex-shrink: 0;
+    font-size: 13px;
+    cursor: not-allowed;
+}
+
+#attack-content {
+    padding: 10px 14px 14px;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#attack-content::-webkit-scrollbar { width: 3px; }
+#attack-content::-webkit-scrollbar-track { background: transparent; }
+#attack-content::-webkit-scrollbar-thumb { background: #550000; border-radius: 2px; }
+
+.attack-line {
+    font-size: 11px;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.attack-system { color: #ff6666; font-weight: bold; }
+.attack-sep    { color: #2a0000; }
+.attack-scan   { color: #ffaa00; }
+.attack-data   { color: #00ff41; }
+.attack-ip     { color: #00d4ff; font-weight: bold; }
+.attack-alert  {
+    color: #ff2200;
+    font-weight: bold;
+    animation: atk-blink 0.5s step-end infinite;
+}
+
 /* ── Windows-style Error Popup ─────────────────────────── */
 #error-popup {
     position: fixed;

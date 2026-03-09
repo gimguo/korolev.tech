@@ -7,7 +7,7 @@
     <meta name="description" content="Andrew Korolev — Principal Engineer. Terminal-style portfolio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=52">
+    <link rel="stylesheet" href="/style.css?v=53">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
@@ -27,6 +27,25 @@
                 <input type="text" id="command-input" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" dir="ltr" inputmode="text" enterkeyhint="go">
             </div>
         </div>
+    </div>
+
+    <!-- Attack countdown overlay -->
+    <div id="attack-countdown">
+        <div id="countdown-box">
+            <div id="countdown-warning">⚠ ИНИЦИАЛИЗАЦИЯ ПРОТОКОЛА ЗАЩИТЫ</div>
+            <div id="countdown-num">5</div>
+            <div id="countdown-sub">СИСТЕМЫ БЕЗОПАСНОСТИ АКТИВИРОВАНЫ</div>
+        </div>
+    </div>
+
+    <!-- Attack info popup (draggable, no close) -->
+    <div id="attack-popup" style="display:none;">
+        <div id="attack-titlebar">
+            <span class="atk-blink">●</span>
+            <span id="attack-title-text">⚠ SECURITY PROTOCOL v2.1 — АКТИВЕН</span>
+            <span id="attack-lock-icon" title="Закрытие заблокировано">🔒</span>
+        </div>
+        <div id="attack-content"></div>
     </div>
 
     <!-- Windows-style fatal error popup -->
@@ -58,6 +77,6 @@
     <script>
     document.getElementById('prompt-text').innerHTML = 'visitor' + String.fromCharCode(64) + 'korolev.tech:~$&nbsp;';
     </script>
-    <script src="/script.js?v=51"></script>
+    <script src="/script.js?v=53"></script>
 </body>
 </html>
