@@ -7,7 +7,7 @@
     <meta name="description" content="Andrew Korolev — Principal Engineer. Terminal-style portfolio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=32">
+    <link rel="stylesheet" href="/style.css?v=50">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
@@ -24,7 +24,7 @@
             <div id="input-line">
                 <span class="prompt" id="prompt-text"></span>
                 <span id="input-mirror"></span><span class="cursor-blink">▌</span>
-                <input type="text" id="command-input" autofocus autocomplete="off" spellcheck="false">
+                <input type="text" id="command-input" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" dir="ltr" inputmode="text" enterkeyhint="go">
             </div>
         </div>
     </div>
@@ -32,6 +32,6 @@
     <script>
     document.getElementById('prompt-text').innerHTML = 'visitor' + String.fromCharCode(64) + 'korolev.tech:~$&nbsp;';
     </script>
-    <script src="/script.js?v=32"></script>
+    <script src="/script.js?v=50"></script>
 </body>
 </html>
