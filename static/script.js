@@ -711,11 +711,11 @@ async function launchProtocol() {
 
   const SEP = '──────────────────────────────────';
 
-  pLine('ИНИЦИАЛИЗАЦИЯ ПРОТОКОЛА ЗАЩИТЫ...', 'system');
+  pLine('INITIALIZING SECURITY PROTOCOL...', 'system');
   await delay(500);
   pLine(SEP, 'sep');
   await delay(200);
-  pLine('СКАНИРОВАНИЕ ЦЕЛИ...', 'scan');
+  pLine('SCANNING TARGET...', 'scan');
   await delay(700);
 
   pLine('BROWSER   › ' + getBrowserName(), 'data');       await delay(280);
@@ -728,7 +728,7 @@ async function launchProtocol() {
 
   pLine(SEP, 'sep');
   await delay(200);
-  pLine('ПОЛУЧЕНИЕ IP АДРЕСА...', 'scan');
+  pLine('RETRIEVING IP ADDRESS...', 'scan');
 
   let ipStr = '[CLASSIFIED]';
   let cityStr = '';
@@ -775,33 +775,52 @@ async function terminalAttackSequence(ip, city, titleBlink, origTitle, origFavic
   tLine('');
 
   const seq = [
-    { ms:  200, cls: 'output-info',      t: '[TERRAFORM]  Разворачивание облачной инфраструктуры...' },
-    { ms:  700, cls: 'output-info',      t: '[TERRAFORM]  Planning: +1000 VPS nodes across 12 regions' },
-    { ms: 1100, cls: 'output-info',      t: '[TERRAFORM]  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 100% — Apply complete.' },
-    { ms:  200, cls: '',                 t: '' },
-    { ms:  100, cls: 'output-cyan',      t: '[ANSIBLE]    Конфигурация 1000 нод...' },
-    { ms:  900, cls: 'output-cyan',      t: '[ANSIBLE]    PLAY RECAP ══════════════════════════════════' },
-    { ms:  350, cls: 'output-cyan',      t: '[ANSIBLE]    1000 hosts | ok=47  changed=12  failed=0  unreachable=0' },
-    { ms:  350, cls: 'output-cyan',      t: '[ANSIBLE]    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ done' },
-    { ms:  200, cls: '',                 t: '' },
-    { ms:  100, cls: 'output-error',     t: '[BOTNET]     Загрузка модулей атаки...' },
-    { ms:  700, cls: 'output-error',     t: '[BOTNET]     C2 сервер: 95.142.x.x:4444 — connected ✓' },
-    { ms:  500, cls: 'output-error',     t: '[BOTNET]     Агентов загружено: 1000/1000 ✓' },
-    { ms:  200, cls: '',                 t: '' },
-    { ms:  100, cls: 'output-highlight', t: '[K8S]        kubectl apply -f shadow-ops/botnet-swarm.yaml' },
-    { ms:  400, cls: 'output-highlight', t: '[K8S]        namespace/shadow-ops created' },
-    { ms:  300, cls: 'output-highlight', t: '[K8S]        deployment.apps/attack-swarm created' },
-    { ms:  550, cls: 'output-highlight', t: '[K8S]        Waiting for pods...    0/1000 Running' },
-    { ms:  700, cls: 'output-highlight', t: '[K8S]        Waiting for pods...  312/1000 Running' },
-    { ms:  650, cls: 'output-highlight', t: '[K8S]        Waiting for pods...  867/1000 Running' },
-    { ms:  550, cls: 'output-highlight', t: '[K8S]        ✓ All 1000/1000 pods RUNNING' },
-    { ms:  200, cls: '',                 t: '' },
-    { ms:  100, cls: 'output-info',      t: '[SYSTEM]     Тестирование систем...' },
-    { ms:  600, cls: 'output-info',      t: '[PING]       target: ' + ip + '  ... 12ms ✓' },
-    { ms:  400, cls: 'output-info',      t: '[BANDWIDTH]  Пропускная способность: 94 Gbps ✓' },
-    { ms:  350, cls: 'output-info',      t: '[FIREWALL]   Bypass модули активированы ✓' },
-    { ms:  350, cls: 'output-info',      t: '[STEALTH]    Логи очищены. Следов нет ✓' },
+    // ── Terraform ─────────────────────────────────────────
+    { ms:  300, cls: 'output-info',      t: '[TERRAFORM]  Initializing provider plugins...' },
+    { ms:  800, cls: 'output-info',      t: '[TERRAFORM]  Planning: +1000 VPS nodes across 12 regions' },
+    { ms: 1000, cls: 'output-info',      t: '[TERRAFORM]  Acquiring cloud resources... this may take a moment' },
+    { ms: 1400, cls: 'output-info',      t: '[TERRAFORM]  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  100%  Apply complete. 1000 added.' },
     { ms:  300, cls: '',                 t: '' },
+    // ── Ansible ───────────────────────────────────────────
+    { ms:  200, cls: 'output-cyan',      t: '[ANSIBLE]    Connecting to 1000 nodes...' },
+    { ms: 1200, cls: 'output-cyan',      t: '[ANSIBLE]    TASK [Install attack modules] *******************************' },
+    { ms:  700, cls: 'output-cyan',      t: '[ANSIBLE]    TASK [Configure C2 channels] ********************************' },
+    { ms:  600, cls: 'output-cyan',      t: '[ANSIBLE]    TASK [Enable stealth mode] **********************************' },
+    { ms:  500, cls: 'output-cyan',      t: '[ANSIBLE]    PLAY RECAP ══════════════════════════════════════════════════' },
+    { ms:  300, cls: 'output-cyan',      t: '[ANSIBLE]    1000 hosts  |  ok=61  changed=14  failed=0  unreachable=0' },
+    { ms:  300, cls: '',                 t: '' },
+    // ── Botnet ────────────────────────────────────────────
+    { ms:  200, cls: 'output-error',     t: '[BOTNET]     Loading attack modules...' },
+    { ms:  900, cls: 'output-error',     t: '[BOTNET]     Establishing C2 link: 95.142.x.x:4444' },
+    { ms:  700, cls: 'output-error',     t: '[BOTNET]     C2 server: connected ✓' },
+    { ms:  600, cls: 'output-error',     t: '[BOTNET]     Syncing agents: 1000/1000 ✓' },
+    { ms:  500, cls: 'output-error',     t: '[BOTNET]     Vectors loaded: SYN flood · HTTP flood · DNS amplification' },
+    { ms:  300, cls: '',                 t: '' },
+    // ── Kubernetes ────────────────────────────────────────
+    { ms:  200, cls: 'output-highlight', t: '[K8S]        kubectl apply -f shadow-ops/botnet-swarm.yaml' },
+    { ms:  500, cls: 'output-highlight', t: '[K8S]        namespace/shadow-ops created' },
+    { ms:  350, cls: 'output-highlight', t: '[K8S]        serviceaccount/attack-runner created' },
+    { ms:  350, cls: 'output-highlight', t: '[K8S]        deployment.apps/attack-swarm created' },
+    { ms:  350, cls: 'output-highlight', t: '[K8S]        horizontalpodautoscaler.autoscaling/attack-swarm created' },
+    { ms:  900, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...     0/1000  pods running' },
+    { ms: 1400, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...    38/1000  pods running' },
+    { ms: 1200, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...   124/1000  pods running' },
+    { ms: 1100, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...   289/1000  pods running' },
+    { ms: 1000, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...   471/1000  pods running' },
+    { ms:  900, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...   653/1000  pods running' },
+    { ms:  800, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...   812/1000  pods running' },
+    { ms:  700, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...   944/1000  pods running' },
+    { ms:  600, cls: 'output-highlight', t: '[K8S]        Waiting for rollout...   991/1000  pods running' },
+    { ms:  500, cls: 'output-highlight', t: '[K8S]        ✓ All 1000/1000 pods RUNNING' },
+    { ms:  300, cls: '',                 t: '' },
+    // ── Pre-attack diagnostics ────────────────────────────
+    { ms:  200, cls: 'output-info',      t: '[SYSTEM]     Running pre-attack diagnostics...' },
+    { ms:  800, cls: 'output-info',      t: '[PING]       target ' + (ip || '[CLASSIFIED]') + '  →  12ms  ✓' },
+    { ms:  500, cls: 'output-info',      t: '[BANDWIDTH]  Available bandwidth: 94 Gbps  ✓' },
+    { ms:  450, cls: 'output-info',      t: '[FIREWALL]   Bypass modules active  ✓' },
+    { ms:  450, cls: 'output-info',      t: '[STEALTH]    Logs cleared. No traces detected  ✓' },
+    { ms:  450, cls: 'output-info',      t: '[SYSTEM]     All systems go. Target locked.' },
+    { ms:  400, cls: '',                 t: '' },
   ];
 
   for (const { ms, cls, t } of seq) {
@@ -813,7 +832,7 @@ async function terminalAttackSequence(ip, city, titleBlink, origTitle, origFavic
   const box = [
     '<span class="output-error">  ██████████████████████████████████████████████████████████████</span>',
     '<span class="output-error">  ██                                                          ██</span>',
-    '<span class="output-error">  ██   💀  BOTNET ГОТОВ К АТАКЕ                              ██</span>',
+    '<span class="output-error">  ██   💀  BOTNET ARMED AND READY                            ██</span>',
     '<span class="output-error">  ██                                                          ██</span>',
     '<span class="output-error">  ██████████████████████████████████████████████████████████████</span>',
   ];
