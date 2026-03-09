@@ -733,17 +733,29 @@ async function launchProtocol() {
   let ipStr = '[CLASSIFIED]';
   let cityStr = '';
   try {
-    const r = await fetch('https://ip-api.com/json/?fields=query,city,country,isp');
+    const r = await fetch('https://ipinfo.io/json');
     const d = await r.json();
-    ipStr   = d.query   || '[CLASSIFIED]';
+    ipStr   = d.ip  || '[CLASSIFIED]';
     cityStr = (d.city && d.country) ? d.city + ', ' + d.country : '';
     await delay(400);
-    pLine('IP        › ' + ipStr, 'ip');              await delay(220);
-    pLine('LOCATION  › ' + (cityStr || '?'), 'ip');   await delay(220);
-    pLine('ISP       › ' + (d.isp || '?'), 'ip');
+    pLine('IP        › ' + ipStr, 'ip');                           await delay(220);
+    pLine('LOCATION  › ' + (cityStr || '?'), 'ip');                await delay(220);
+    pLine('ISP       › ' + (d.org  || '?'), 'ip');
   } catch (e) {
-    await delay(400);
-    pLine('IP        › [CLASSIFIED]', 'ip');
+    try {
+      const r2 = await fetch('https://api.ipify.org?format=json');
+      const d2 = await r2.json();
+      ipStr = d2.ip || '[CLASSIFIED]';
+      await delay(400);
+      pLine('IP        › ' + ipStr, 'ip');
+      pLine('LOCATION  › [ENCRYPTED]', 'ip');
+      pLine('ISP       › [ENCRYPTED]', 'ip');
+    } catch (e2) {
+      await delay(400);
+      pLine('IP        › [CLASSIFIED]', 'ip');
+      pLine('LOCATION  › [CLASSIFIED]', 'ip');
+      pLine('ISP       › [CLASSIFIED]', 'ip');
+    }
   }
 
   await delay(700);
